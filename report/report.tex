@@ -1,0 +1,244 @@
+This paper compares the results of various PSO standards, providing an
+account of the history of PSO development to justify their differences.
+
+These N problems were all tested using different standards of PSO with the best
+standard available at the time.
+
+% R library `pso` with default options adheres to 2007 SPSO - with an optional
+% flag adheres to 2011 SPSO.  But, these two approaches are very similar. A
+% third implementation is needed - maybe the original?
+
+This paper shows the improvements of PSO over time, as different approaches are
+adopted.
+
+\begin{abstract}
+This paper compares three different variations of Particle Swarm Optimization.
+In addition, three variable switches have been selected to see which versions
+of PSO are most compatible with these common variables. The comparison is made
+based on the number of iterations taken to converge on the global best
+solution, and if this is never found whether or not a local best was found. 
+\end{abstract}
+
+Uses the Particle Swarm Optimization Research Toolbox.
+
+NB CONSTRICTION IS NOT THE SAME AS VELOCITY CLAMPING
+
+
+---------------------
+
+FINAL VERSION::::::::::::
+
+---
+
+This paper compares a variety of PSO variations running at optimal settings, in
+order to determine which are better at addressing some of the problems found in
+PSO: namely, premature convergence on local maxima and slow convergence speed.
+
+The aim is to compare each algorithm operating in the best known parameters for
+PSO to date.
+
+The paper starts by briefly outlining the fundamentals of PSO, and the events
+and discoveries since its introduction in 1995 which have resulted in the
+default values set as constants in this evaluation.
+
+In order to perform this analysis, a customizable PSO framework is employed
+called the MATLAB Partile Swarm Optimization Toolbox.
+
+----
+
+The PSO variations under test are:
+
+* Standard PSO
+* Guaranteed convergence PSO
+* Multi-start PSO
+* Regrouping PSO
+* Opposition-based PSO
+
+In every case, the following extensions to the original PSO algorithm have been
+enabled:
+
+* Linear-decreasing inertia
+* Neighbourhood (local) best <nb>
+* Velocity clamping
+
+<nb> This setting is conceptually incompatible with Opposition-based PSO and
+Guaranteed convergence PSO, and so has not been enabled.
+
+These variations have been measured by comparing their success in optimizing
+the following functions:
+
+* Ackley
+* Griewangk
+* Quadric
+* Noisy Quartic
+* Rastrigin
+* Rosenbrock
+* Schaffer’s
+* Schwefel
+* Sphere
+* Weighted
+* Sphere
+
+The success criteria is whether after 2000 iterations, the particles converged
+to the global minimum within an appropriate threshhold for success (varies
+depending on the optimization objective).
+
+--
+
+Experiment details:
+
+1000 averaged trials per scenario
+
+In the case where the PSO variations require additional parameters, these
+values have been set to their optimum as found by the authors. General PSO
+parameters have similarly been set to best-known values across a wide variety
+of optimization problems.
+
+Outcomes:
+
+show a table of results that compares whether each 
+
+
+
+
+
+
+
+::::::::END FINAL VERSION
+
+
+== Configuration of PSO Research Toolbox ==
+
+    OnOff_func_evals = logical(1)
+
+== Optimization functions used to benchmark ==
+
+* Ackley
+* Griewangk
+* Quadric
+* Noisy Quartic
+* Rastrigin
+* Rosenbrock
+* Schaffer’s
+* Schwefel
+* Sphere
+* Weighted
+* Sphere
+
+== Things to measure ==
+
+Percent of trial runs which, after a set number of iterations, successfully
+converge on the minimum of the function.
+
+An average is taken of this percentage between all functions.
+
+== Variations tested ==
+
+The three types of PSO considered
+are Standard PSO (as per 2011 spec), Multi-start PSO (with 2 starts),
+Regrouping PSO
+
+Tested with the following options:
+
+* Local best / global best
+* Linear-decreasing velocity on/off.
+* Velocity clamping on/off.
+
+== Types of PSO ==
+
+1. Standard PSO
+2. Multi-start PSO
+3. Regrouping PSO
+
+
+-----
+
+1. Global best, static inertial weight, no velocity clamping.
+
+Quicker to converge, but less robust since if the global best isn't updated
+enough, the particles will converge at a point that might not even be a local
+minimum, let alone global minimum.
+
+This represents
+
+2. Global best, varying inertial weight, velocity clamping
+
+Represents improvements from the first few papers on PSO - 
+
+2. Local best model, static inertial weight, no velocity 
+
+Introduces neighbourhoods (P N Suganthan 1999).
+
+3. Time-varying inertia weight.
+
+
+4. Velocity clamping i.e. constriction (Clerc 1999)
+
+I think the effects of this are to make the particles tend towards a central
+point (the 'queen'), addressing the problem of premature convergence on local
+minimums.
+
+1. Original spec of PSO, with no inertia weight
+2. The firs
+2. Improvements on the algorithm
+3. The first spec of PSO, 
+
+=====
+
+
+This paper looks at parameter selection in PSO.  In particular we are concerned
+with improvements to the PSO algorithm that focus on the inertia weight constants such as inertia
+weight and bounds on the velocity value.
+
+PSO techniques are successful optimization solutions, but are currently less
+preferred when compared with other nature-inspired optimization algorithms such
+as genetic algorithms.  PSO is a relatively new algorithm (introduced 1995) and
+is simple enough to offer a broad scope for optimizations and adaptations.
+
+The main limitations of PSO are that "The algorithm can easily get trapped in
+the local optima and has slow convergence speed."
+
+The basic methods for improving PSO that are considered are:
+
+* Adding new constants.
+* Controlling constants dynamically.
+* Modifying the algorithm to obviate the need for one or more of the constants.
+
+This paper does not consider other approaches to improving PSOs, such as
+placing particles into neighbourhoods (islands, 'neighbourhood best') or
+combining PSO with techniques from other Evolutionary Computing algorithms.
+
+=== chronology of attempts to address PSO shortcomings through parameter
+optimisation ===
+
+* PSO introduced (Eberhart 1995)
+* Introduce inertia weight (Eberhart 1998)
+* Add a constriction factor (Clerc 1999)
+* Quantum PSO (Sun, Feng, Xu 2004)
+* Fuzzy PSO (C Liu et al. 2010)
+* Step-optimized PSO (T Schoene and S A Ludwig 2012)
+* Median-oriented PSO (Z Beheshti et al. 2013)
+
+One approach to solving these problems is to replace the constants with some
+formula to calculate the tradeoff between the local and global maxima.  In
+other words, instead of fixed values that determines whether the global or
+local best should be more influential, replace this with a further function.
+This is the aproach taken in MPSO: Median-oriented PSO (2013).
+
+The other, more common approach is to still have the fixed constants for local
+and global maxima, but change it in some dynamic way. For example
+
+
+
+
+
+* Dynamic determination of constants, such as linear-decreasing or
+step-optimized.
+* Adding new parameters, such as fuzzy PSO
+* Changing the algorithm such that the number of constants are reduced: quantum
+PSO.
+* 
+
+The following are ignored:
+
+* Adaptations to PSO which concerrn 
