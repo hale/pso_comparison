@@ -1,3 +1,25 @@
+Optimization functions in PSO 2011:
+
+Optimization functions in PSO Research Toolbox:
+
+* Ackley
+* Griewangk
+* Quadric
+* Noisy Quartic
+* Rastrigin
+* Rosenbrock
+* Schaffer’s
+* Schwefel
+* Sphere
+* Weighted
+* Sphere
+
+Optimization functions in CEC 2013:
+
+
+
+
+
 This paper compares the results of various PSO standards, providing an
 account of the history of PSO development to justify their differences.
 

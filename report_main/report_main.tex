@@ -3,73 +3,149 @@
 \author{Philip Hale}
 \title{A comparison of developments in PSO from 1995 to 2013}
 
+\usepackage[utf8]{inputenc}
+\usepackage{natbib}
+\bibliographystyle{alpha}
+
 \begin{document}
 
-\begin{titlepage}
-  \maketitle
-  \begin{abstract}
-  This paper compares the industry-best standard of Particle Swarm Optimization
-  (SPSO-2011) with unmodified canonical PSO that is close to it's original
-  implementation first proposed in 1995. The success of each algorithm is
-  determined by its ability to optimize NUMBER_OF_FUNCS functions. We begin by
-  introducing PSO and explaining its historical limitations, and conclude by
-  evaluating the extent to which these have limitations have been addressed by
-  the current-best standard.
-  \end{abstract}
-  \tableofcontents
-\end{titlepage}
+\maketitle
+
+\section{Abstract}
+
+This paper compares the gold-standard of Particle Swarm Optimization
+(SPSO-2011) with a canonical PSO implementation that is similar to original
+designs from 1995. The success of each algorithm is determined by its ability
+to optimize 4 functions. We begin by introducing PSO and the differences
+between the algorithms under test, and conclude by evaluating the extent to
+which limitations of PSO have been addressed by the current standard.
 
 \section{Introduction}
 
 Particle Swarm Optimization is a comparatively new evolutionary computation
 technique, having only been around since 1995.  Conceptually the algorithm
-emulates a flock of birds circling a roost, resulting in  behaviour described by
-the original paper as ``flying potential solutions through hyperspace,
-accelerating toward `better' solutions.'' (Eberhart 1995).
+emulates a flock of birds circling a roost, resulting in  behaviour described
+by the original paper as ``flying potential solutions through hyperspace,
+accelerating toward `better' solutions''~\cite{Kennedy:1995bi}.
 
-Since the algorithm in its simple form is competitive with more complex and
-mature optimization techniques, it has been the subject of much study since
-then. These developments are primarily concerned with avoiding the potential for
-the algorithm to prematurely converge on a non-global minima, and increasing the
-speed at which convergence occurs.
+Since the algorithm is simple and competitive with more complex and mature
+optimization techniques, it has been the subject of much study. Research has
+been primarily concerned with avoiding the potential for the algorithm to
+prematurely converge on a non-global minima, and increasing the speed at which
+convergence occurs.
 
-Fifteen years later, a number of 
+In 2007, and then again in 2011, a Standard PSO (SPSO) was proposed in order to
+give future research a baseline comparison. Prior to this date, much of the
+claimed improvements to PSO were made by comparison with an outdated model of
+PSO that didn't reflect a fair baseline. This made comparison between results
+difficult. The new standards provide a benchmark that mean  ``if your brand new
+algorithm does not significantly `beat' SPSO (on a difficult enough non-biased
+benchmark) you have to improve it'' (Clerc 2012).
 
-\subsection{Algorithm definition}
+SPSO is not meant to be outperform every flavour of PSO either generally or on
+a subset of optimization targets (Bratton et al. 2007). More performant PSO
+implementations exist, but the improvements are either still under scrutiny or
+limited to certain classes of functions.
 
-PSO ALGO DEFINITINO GOES HERE
+Comparing the contemporary baseline-performance of PSO with an implementation
+that resembles PSO from the late nineties allows us to assess how far the field
+has come, and to what extent some of PSO's earlier limitations are still
+relevant.
 
-\section{Key Developments}
+\subsection{Algorithm specifications}
 
-Since shortly after its introduction some fundamental issues with PSO have been
-apparent, namely premature convergence (SRC) and a comparatively slow convergence
-speed (SRC).
+The algorithm consists of a population of particles, where each particle
+represents a candidate solution to the objective function.  The number of
+particles is referred to as the swarm-size, and is notated by $S$.
 
-\subsection{Canonical PSO}
+The dimension of the search space $D$ determines the magnitude of the position
+and velocity matrices for each particle. Formally, the $position$ and $velocity$
+for the $i^th$ particle are denoted:
 
-Developments that led from original PSO to the canonical PSO analysed in this
-paper.
+$\overrightarrow{X_i} = x_i1, x_i2,\ldots,x_iD$
+$\overrightarrow{V_i} = v_i1, v_i2,\ldots,v_iD$
 
-\subsection{a thing in 2011}
-Developments leading to thing
-
-\subsection{another thing in 2011}
-Developments leading to other thing
-
-\subsection{another other thing in 2011}
-Developments leading to another thing
-
-\section{research question}
-
-\subsection{Canonical PSO}
-
-\subsection{SPSO 2011}
-
-particles: 40 suggested value
-initialization: adaptive random topology. Particular case of 'stochastic star'
-
-
+Each iteration of the algorithm updates each particle's velocity and position in
+the search space.  Each particle keeps track of the best position they have
+reached so far. This is known as the $personal best$, and is represented by:
 
 
+$\overrightarrow{P_i} = p_i1, p_i2,\ldots,p_iD$
+
+The performance or `fitness' of a given position can be determined by evaluating
+the objective function with the position values as input.
+
+The main loop of the algorithm consists of the velocity-update and
+position-update functions. These are as follows:
+
+$v_i = v_i + c_1 * rand() * ()$
+
+Variations of the PSO algorithm consist of changes in the initialization of the
+swarm, modification to to the velocity and positional update functions. These
+are explained in detail below in defining the two algorithms under test.
+
+\subsubsection{Canonical PSO}
+
+Since shortly after its introduction two tendencies were identified that limited
+PSO's performance, namely premature convergence (formal proof in van den Bergh
+2002) and a comparatively slow convergence speed (Modified PSO, Eberhart 1998).
+
+Since some of these advancements have been present for at least a decade, they
+have been included in the Canonical PSO.
+
+The specification above describes $global best$ or $gbest$  PSO, since a single
+(??). This has the unfortunate property of premature convergence. In fact, until
+Guaranteed Convergence PSO (van den Bergh 2002) was introduced, the algorithm
+could not even guarantee convergence on a local minima.
+
+A solution was proposed in the form of $local best$ or $lbest$ PSO, which groups
+the particles into distinct neighbourhoods, each with their own best-so-far
+position value (Sugunthan 1999). Earlier versions of PSO were characterised by
+using this $lbest$ variation, and so it has been chosen for this comparison.
+
+
+
+
+
+It is not currently known how to pick the optimal number of particles (Trelea
+2003), so a medium value of 40 has been chosen. Increasing the swarm size
+increases the success rate at the expense of function evaluations. Since our
+stopping criteria in this simulation is a set number of function evaluations,
+it is important that the swarm size remains constant for both algorithms.
+
+
+
+\begin{description}
+  \item[Type] local-best (with neighbourhoods)
+  \item[Particles] 30
+  \item[Vmax] Range of search space
+  \item[Initial velocity] Random between $-Vmac$ and $Vmax$
+  \item[Initial position] Randomly around the unshifted center of the function
+  \item[Topology] Ring-topology
+  \item[Confinement] idk
+\end{description}
+
+
+\subsubsection{Standard PSO 2011}
+
+\begin{description}
+  \item[Type] local-best (with neighbourhoods)
+  \item[Particles] 30
+  \item[Topology] Adaptive-random topology
+  \item[Initial velocity] idk
+\end{description}
+
+
+%particles: 40 suggested value
+%initialization: adaptive random topology. Particular case of 'stochastic star'
+
+\section{Experiment setup}
+
+In order to overcome potential bias, the functions have been shifted such that
+the particles are not initialized around the global minimum (Monson et al.
+2005).
+
+
+\bibliography{pso_comparison}
 
 \end{document}
