@@ -3,9 +3,24 @@
 \author{Philip Hale}
 \title{A comparison of developments in PSO from 1995 to 2013}
 
-\usepackage[utf8]{inputenc}
-\usepackage{natbib}
+\usepackage[utf8]{inputenc} % allows UTF-8 in references
+\usepackage{natbib} % support for alpha style
+\usepackage{amsmath} % better rendering of formulae
+\usepackage{graphicx} % graphics support
+\usepackage{epstopdf} % eps support
+\usepackage{multicol} % multiple columns
+\usepackage{caption} % helps with multicol + figures
+
+% Sort-of chicago-style (humanities) inline references.
 \bibliographystyle{alpha}
+
+% aligns overrightarrows in math formulae
+\newcommand{\rarrow}[1]{\overrightarrow{#1\vphantom{b}}}
+
+% sensible figures in multi-column environments
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
 
 \begin{document}
 
@@ -32,18 +47,19 @@ Since the algorithm is simple and competitive with more complex and mature
 optimization techniques, it has been the subject of much study. Research has
 been primarily concerned with avoiding the potential for the algorithm to
 prematurely converge on a non-global minima, and increasing the speed at which
-convergence occurs.
+convergence occurs~\cite{vandenBergh:2002tk}.
 
-In 2007, and then again in 2011, a Standard PSO (SPSO) was proposed in order to
-give future research a baseline comparison. Prior to this date, much of the
-claimed improvements to PSO were made by comparison with an outdated model of
-PSO that didn't reflect a fair baseline. This made comparison between results
-difficult. The new standards provide a benchmark that mean  ``if your brand new
-algorithm does not significantly `beat' SPSO (on a difficult enough non-biased
-benchmark) you have to improve it'' (Clerc 2012).
+In 2007~\cite{Bratton:2007hq}, and then again in 2011~\cite{Clerc:2012to}, a
+Standard PSO (SPSO) was proposed in order to give future research a baseline
+comparison. Prior to this date, much of the claimed improvements to PSO were
+made by comparison with an outdated model of PSO that didn't reflect a fair
+baseline. This made comparison between results difficult. The new standards
+provide a benchmark that mean  ``if your brand new algorithm does not
+significantly `beat' SPSO (on a difficult enough non-biased benchmark) you have
+to improve it''~\cite{Clerc:2012to}.
 
-SPSO is not meant to be outperform every flavour of PSO either generally or on
-a subset of optimization targets (Bratton et al. 2007). More performant PSO
+SPSO is not meant to be outperform every flavour of PSO either generally or on a
+subset of optimization targets~\cite{Bratton:2007hq}. More performant PSO
 implementations exist, but the improvements are either still under scrutiny or
 limited to certain classes of functions.
 
@@ -52,7 +68,9 @@ that resembles PSO from the late nineties allows us to assess how far the field
 has come, and to what extent some of PSO's earlier limitations are still
 relevant.
 
-\subsection{Algorithm specifications}
+\section{PSO Variants under Test}
+
+\subsection{Original PSO}
 
 The algorithm consists of a population of particles, where each particle
 represents a candidate solution to the objective function.  The number of
@@ -60,52 +78,169 @@ particles is referred to as the swarm-size, and is notated by $S$.
 
 The dimension of the search space $D$ determines the magnitude of the position
 and velocity matrices for each particle. Formally, the $position$ and $velocity$
-for the $i^th$ particle are denoted:
+for the $i^{th}$ particle are denoted by
+$\rarrow{X_i} = x_{i1}, x_{i2},\ldots,x_{iD}$ and
+$\rarrow{V_i} = v_{i1}, v_{i2},\ldots,v_{iD}$ respectively.
+Initialization takes place by giving each particle a random velocity and
+position within the search space.
 
-$\overrightarrow{X_i} = x_i1, x_i2,\ldots,x_iD$
-$\overrightarrow{V_i} = v_i1, v_i2,\ldots,v_iD$
-
-Each iteration of the algorithm updates each particle's velocity and position in
-the search space.  Each particle keeps track of the best position they have
-reached so far. This is known as the $personal best$, and is represented by:
-
-
-$\overrightarrow{P_i} = p_i1, p_i2,\ldots,p_iD$
-
+Each particle keeps track of the best position they have reached so far. This is
+known as the $personal best$, and is represented by $\rarrow{P_i} = p_{i1}, p_{i2},\ldots,p_{iD}$.
 The performance or `fitness' of a given position can be determined by evaluating
-the objective function with the position values as input.
+the objective function with the position values as input. After each iteration,
+the global best $g$ is updated with the best position of all particles in the
+swarm.
 
-The main loop of the algorithm consists of the velocity-update and
-position-update functions. These are as follows:
+Each iteration of the algorithm updates each particle's velocity and position.
+These are computed as follows:
 
-$v_i = v_i + c_1 * rand() * ()$
+\begin{equation} \label{eq:orig_v_update}
+\rarrow{V}_i^{t+1} = \rarrow{V}_i^t + c_1 \rarrow{U}_1^t \circ (\rarrow{P}_i^t - \rarrow{X}_i^t) + c_2 \rarrow{U}^t_2 \circ (g^t - \rarrow{X}_i^t)
+\end{equation}
+
+\begin{equation} \label{eq:orig_p_update}
+\rarrow{X}_i^{t+1} = \rarrow{X}_i^t + \rarrow{V}_i^{t+1}
+\end{equation}
+
+$t = 1, 2,\ldots,T$, where T is the number of iterations. $c_1$ and $c_2$ are
+the $cognitive$ and $social$ weights used to control the bias between locally
+optimized and globally optimized search. $\rarrow{U}_1$ and $\rarrow{U}_2$ are
+random vectors in the range $[0,1]$, and $\circ$ denotes the Hadamard product,
+also known as entrywise product, of the two matrices.
 
 Variations of the PSO algorithm consist of changes in the initialization of the
-swarm, modification to to the velocity and positional update functions. These
+swarm, modifications to the velocity and positional update functions. These
 are explained in detail below in defining the two algorithms under test.
 
-\subsubsection{Canonical PSO}
+\subsection{Canonical PSO}
 
-Since shortly after its introduction two tendencies were identified that limited
-PSO's performance, namely premature convergence (formal proof in van den Bergh
-2002) and a comparatively slow convergence speed (Modified PSO, Eberhart 1998).
+Early analysis of the original PSO algorithm revealed some limitations, chief
+among them premature convergence~\cite{vandenBurgh:2002tk} and a comparatively
+slow convergence speed~\cite{Shi:1998kl}. Alterations to the original approach
+were suggested, and since some of these advancements have been present for a
+decade or more, they have been included in this specification of Canonical
+PSO\@.
 
-Since some of these advancements have been present for at least a decade, they
-have been included in the Canonical PSO.
+The modifications described below have the effect of changing the velocity
+update equation to:
 
-The specification above describes $global best$ or $gbest$  PSO, since a single
-(??). This has the unfortunate property of premature convergence. In fact, until
-Guaranteed Convergence PSO (van den Bergh 2002) was introduced, the algorithm
-could not even guarantee convergence on a local minima.
+\begin{equation} \label{eq:canon_v_update}
+\rarrow{V}_i^{t+1} = \omega \rarrow{V}_i^t + c_1 \rarrow{U}_1^t \circ (\rarrow{P}_i^t - \rarrow{X}_i^t) + c_2 \rarrow{U}^t_2 \circ (\rarrow{L}^t - \rarrow{X}_i^t)
+\end{equation}
+
+%\subsubsection{In summary}
+
+%\begin{description}
+  %\item[Type] local-best (with neighbourhoods)
+  %\item[Vmax] Range of search space
+  %\item[Initial velocity] Random between $-Vmac$ and $Vmax$
+  %\item[Initial position] Randomly around the unshifted center of the function
+  %\item[Topology] Ring-topology
+  %\item[Peers per neigbourhood] 10
+  %\item[Inertia] Linear decreasing from 0.9 to 0.4
+  %\item[$c_1$] 1.49618
+  %\item[$c_2$] 1.49618
+%\end{description}
+
+\subsubsection{Inertia Weight}
+
+Upon closer examination of the original PSO update procedure, it can be seen
+that the cognitive and social weight values determine whether the search-space
+contracts towards a best-known minimum or expands to explore a new range of
+solutions. Given this tradeoff, it makes sense to introduce a new parameter that
+``plays the role of balancing the global search and local search''. This is
+called the inertia weight~\cite{Shi:1998kl}. Empirical evidence has suggested
+that a linear-decreasing inertia weight gives the best results, where the
+initial linear weight of $0.9$ decreases to $0.4$ as the number of iterations
+increases~\cite{Shi:1998jj}.
+
+This introduces a new parameter $\omega$ to the velocity update equation, which
+gives momentum to the current velocity.
+
+\subsubsection{Local Best; Neighbourhoods}
+
+The specification above describes $\text{global best}$ or $gbest$ PSO\@. This
+has the unfortunate property of premature convergence. In fact, until Guaranteed
+Convergence PSO was introduced~\cite{vandenBergh:2002tk}, the algorithm could
+not even guarantee convergence on a local minima.
 
 A solution was proposed in the form of $local best$ or $lbest$ PSO, which groups
 the particles into distinct neighbourhoods, each with their own best-so-far
-position value (Sugunthan 1999). Earlier versions of PSO were characterised by
-using this $lbest$ variation, and so it has been chosen for this comparison.
+position value~\cite{Sugunthan:1999iv}. Instead of a globally-known best
+solution, each neighbourhood has its own local-best position. Earlier versions
+of PSO were characterised by using this $lbest$ variation, and so it has been
+chosen for the comparison. The paper that first proposed $lbest$ PSO used
+Eculidian distance to determine neighbourhood groupings.  Canonical PSO uses the
+more popular and computationally cheaper ring topology, which creates
+neighbourhoods based on the array index of the particle swarm.
 
+This has the effect of changing the algorithm such that instead
+of a global best $g$, the best-known position of a particle's neighbourhood is
+represented by $\rarrow{L} = l_1, l_2,\ldots,l_D$.
 
+\subsection{SPSO 2011}
 
+%\subsubsection{In Summary}
 
+%\begin{description}
+  %\item[Type] local-best, with adaptive-random topology.
+  %\item[Particles] 30
+  %\item[Number of neighbourhoods]
+  %\item[Initial velocity] idk
+  %\item[Inertia] $1/(2*log(2))$
+  %\item[$c_1$] $0.5 * log(2)$
+  %\item[$c_2$] $0.5 * log(2)$
+%\end{description}
+
+\subsubsection{Initialisation of the swarm}
+
+Like Canonical PSO, the initial position of particles is randomised within the
+search space. Unlike Canonical PSO, the velocity is determined by:
+
+\begin{equation}
+  V_i^0 = U(D_{min} - X_i^d, D_{max} - X_i^d)
+\end{equation}
+
+In addition, the parameter values are normalised, which transforms the
+search-space into a hypercube. This is in order to gain maximum benefit from the
+new velocity update equation, which makes use of
+hyperspheres~\cite{Clerc:2012to}.
+
+\subsubsection{Neighbourhood}
+
+Like Canonical PSO, SPSO-2011 also supports neighbourhoods. However whereas
+Canonical PSO groups neighbours in a ring topology, SPSO-2011 implements
+adaptive-random topology. This introduces variability into the neighbourhoods,
+whereby the neighbourhood changes each time the local-best score stays the same.
+
+With the suggested parameters, this means each particle informs itself plus a
+maximum of two other randomly selected particles. By implication each particle
+can be informed by anything from just itself to every particle in the swarm,
+since a particle can be chosen more than once. In other words, ``the information
+of the location of the global best is only communicated to a subset of the
+swarm, and the composition of this subset varies from iteration to
+iteration''~\cite{Miranda:2007er}
+
+\begin{Figure}
+  \centering
+  \includegraphics[width=0.5\linewidth]{star_topology.eps}
+  \captionof{figure}{Adaptive-random topology}
+\end{Figure}
+
+\subsubsection{Velocity update equations}
+
+\subsubsection{Confinement} % aka velocity clamping
+
+\subsection{Commonalities between both PSO variations under test}
+
+Some parameters have been kept the same between the variations under test, for
+two reasons. Firstly, because the parameter values do not represent a
+fundamental advancement of the algorithm, and so it makes sense to set them to
+best known values. Secondly, to ensure that the comparison is accurate and does
+not unfairly bias one approach due to parameter choice rather than a genuine
+development of the algorithm.
+
+\subsubsection{Swarm size}
 
 It is not currently known how to pick the optimal number of particles (Trelea
 2003), so a medium value of 40 has been chosen. Increasing the swarm size
@@ -114,37 +249,62 @@ stopping criteria in this simulation is a set number of function evaluations,
 it is important that the swarm size remains constant for both algorithms.
 
 
-
-\begin{description}
-  \item[Type] local-best (with neighbourhoods)
-  \item[Particles] 30
-  \item[Vmax] Range of search space
-  \item[Initial velocity] Random between $-Vmac$ and $Vmax$
-  \item[Initial position] Randomly around the unshifted center of the function
-  \item[Topology] Ring-topology
-  \item[Confinement] idk
-\end{description}
-
-
-\subsubsection{Standard PSO 2011}
-
-\begin{description}
-  \item[Type] local-best (with neighbourhoods)
-  \item[Particles] 30
-  \item[Topology] Adaptive-random topology
-  \item[Initial velocity] idk
-\end{description}
-
-
-%particles: 40 suggested value
-%initialization: adaptive random topology. Particular case of 'stochastic star'
-
-\section{Experiment setup}
+\section{Functions}
 
 In order to overcome potential bias, the functions have been shifted such that
-the particles are not initialized around the global minimum (Monson et al.
-2005).
+the particles are not initialized around the global
+minimum~\cite{Monson:2005fn}.
 
+%The Rosenbrock function is a widely test function in optimization. PSO was first
+%tested against it in~\cite{Shi:1999je}, with an algorithm somewhat similar to
+%the Canonical PSO described here.
+
+\begin{multicols}{2}
+
+\begin{Figure}
+  \centering
+  \includegraphics[width=\linewidth]{../functions/rosenbrock_shifted.eps}
+  \captionof{figure}{Rosenbrock Function}
+\end{Figure}
+
+\begin{Figure}
+  \centering
+  \includegraphics[width=\linewidth]{../functions/schwefel.eps}
+  \captionof{figure}{Schwefel Function}
+\end{Figure}
+
+\begin{Figure}
+  \centering
+  \includegraphics[width=\linewidth]{../functions/sphere_shifted.eps}
+  \captionof{figure}{Sphere Function}
+\end{Figure}
+
+\begin{Figure}
+  \centering
+  \includegraphics[width=\linewidth]{../functions/rastrigin_shifted.eps}
+  \captionof{figure}{Rastrigin Function}
+\end{Figure}
+
+\end{multicols}
+
+\section{Experiments}
+
+\subsection{Setup}
+
+The following parameters were setup for both simulations:
+
+\begin{description}
+  \item[Swarm size] 40
+  \item[Maximum function evaluations] 100000
+  \item[Number of runs] 25
+\end{description}
+
+
+\section{Experimental results}
+
+\section{Analysis of results}
+
+\section{Conclusion}
 
 \bibliography{pso_comparison}
 

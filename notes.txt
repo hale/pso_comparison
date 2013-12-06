@@ -1,4 +1,44 @@
+Optimization functions common between both:
+
+* Ackley
+* Rosenbrock
+* Schwefel
+* Rastrigin
+
 Optimization functions in PSO 2011:
+
+unimodal functions:
+
+* shifted sphere
+* shifted schwefel 1.2
+* shifted rotated high conditioned elliptic
+* shifted schwefel with noise in fitness
+
+multimodal
+
+* shifted rosenbrock
+* shifted rotated girewank without bounds
+* shifted rotated ackley with global optimum on bounds
+* shifted rastrigin
+* shifted rotated rastrigin
+* shifted rotated weierstrass
+* schwefel 2.13
+
+expanded functions
+
+* expanded extended girewank + rosenbrock
+* expanded rotated extended scaffe
+
+several hybrid composition functions
+
+others
+
+* six hump camel back
+* salomon
+* quartic
+* rotated hyper ellipsoid
+* norwegian function
+a bunch of others i cba listing
 
 Optimization functions in PSO Research Toolbox:
 
@@ -14,7 +54,6 @@ Optimization functions in PSO Research Toolbox:
 * Weighted
 * Sphere
 
-Optimization functions in CEC 2013:
 
 
 
