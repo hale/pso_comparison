@@ -178,6 +178,26 @@ This has the effect of changing the algorithm such that instead
 of a global best $g$, the best-known position of a particle's neighbourhood is
 represented by $\rarrow{L} = l_1, l_2,\ldots,l_D$.
 
+\begin{multicols}{3}
+  \begin{Figure}
+    \centering
+    \includegraphics[width=\linewidth]{global_best_topology.eps}\label{fig:global_best_topology}
+    \captionof{figure}{Global-best topology}
+  \end{Figure}
+
+  \begin{Figure}
+    \centering
+    \includegraphics[width=\linewidth]{ring_topology.eps}\label{fig:ring_topology}
+    \captionof{figure}{Ring topology}
+  \end{Figure}
+
+  \begin{Figure}
+    \centering
+    \includegraphics[width=\linewidth]{star_topology.eps}\label{fig:adaptive_random_topology}
+    \captionof{figure}{Adaptive-random topology}
+  \end{Figure}
+\end{multicols}
+
 \subsection{SPSO 2011}
 
 %\subsubsection{In Summary}
@@ -191,6 +211,15 @@ represented by $\rarrow{L} = l_1, l_2,\ldots,l_D$.
   %\item[$c_1$] $0.5 * log(2)$
   %\item[$c_2$] $0.5 * log(2)$
 %\end{description}
+
+The effect of the modifications below is this new velocity-update formula, where
+$H_i(\rarrow{G}_i^t,||\rarrow{G}_i^t - \rarrow{X}_i^t||)$ describes the
+hypersphere:
+
+\begin{equation}
+  \rarrow{V}_i^{t+1} = \omega \rarrow{V}_i^t + H_i(\rarrow{G}_i^t,||\rarrow{G}_i^t - \rarrow{X}_i^t||) - \rarrow{X}_i^t
+\end{equation}
+
 
 \subsubsection{Initialisation of the swarm}
 
@@ -209,9 +238,11 @@ hyperspheres~\cite{Clerc:2012to}.
 \subsubsection{Neighbourhood}
 
 Like Canonical PSO, SPSO-2011 also supports neighbourhoods. However whereas
-Canonical PSO groups neighbours in a ring topology, SPSO-2011 implements
-adaptive-random topology. This introduces variability into the neighbourhoods,
-whereby the neighbourhood changes each time the local-best score stays the same.
+Canonical PSO groups neighbours in a ring
+topology~(Figure~\ref{fig:ring_topology}), SPSO-2011 implements adaptive-random
+topology~(Figure~\ref{fig:adaptive_random_topology}). This introduces
+variability into the neighbourhoods, whereby the neighbourhood changes each time
+the local-best score stays the same.
 
 With the suggested parameters, this means each particle informs itself plus a
 maximum of two other randomly selected particles. By implication each particle
@@ -221,15 +252,38 @@ of the location of the global best is only communicated to a subset of the
 swarm, and the composition of this subset varies from iteration to
 iteration''~\cite{Miranda:2007er}
 
-\begin{Figure}
-  \centering
-  \includegraphics[width=0.5\linewidth]{star_topology.eps}
-  \captionof{figure}{Adaptive-random topology}
-\end{Figure}
-
 \subsubsection{Velocity update equations}
 
+SPSO-2011 addresses a long running concern in PSO analysis, where functions that
+have minimums on the axis of the search space are much easier to optimize. The
+technique to address this requires using rotational invariance to perform the
+calculation based on a point slightly skewed from the known positions. The
+effect of this operation is a more uniform distribution of all next possible
+positions, $DNPP$.  This process and its effects are explained more thoroughly
+in~\cite{ZambranoBigiarini:2013dl}.
+
+\begin{multicols}{2}
+
+\begin{Figure}
+  \centering
+  \includegraphics[width=0.8\linewidth]{dnpp_canonical.png}\label{fig:dnpp_canonical}
+  \captionof{figure}{DNPP in Canonical PSO, adapted from~\cite{ZambranoBigiarini:2013dl}}
+\end{Figure}
+
+\begin{Figure}
+  \centering
+  \includegraphics[width=0.8\linewidth]{dnpp_spso11.png}\label{fig:dnpp_spso11}
+  \captionof{figure}{DNPP in SPSO-2011, adapted from~\cite{ZambranoBigiarini:2013dl}}
+\end{Figure}
+
+\end{multicols}
+
 \subsubsection{Confinement} % aka velocity clamping
+
+``When a particle `flies' outside the $[min_d ,max_d]$ range, each boundary of
+the search space acts as an absorbing wall, modifying the position of the
+particle to coincide with the reached boundary and resetting the particle's
+velocity to zero.''~\cite{ZambranoBigiarini:2013dl}.
 
 \subsection{Commonalities between both PSO variations under test}
 
