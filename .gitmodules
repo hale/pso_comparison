@@ -1,3 +1,6 @@
 [submodule "pso_research_toolbox"]
 	path = pso_research_toolbox
 	url = https://github.com/hale/pso_research_toolbox
+[submodule "SPSO2011"]
+	path = SPSO2011
+	url = https://github.com/hale/SPSO2011.git
