@@ -10,6 +10,8 @@
 \usepackage{epstopdf} % eps support
 \usepackage{multicol} % multiple columns
 \usepackage{caption} % helps with multicol + figures
+\usepackage{siunitx} % easier to use and read standard form. E.g. \num{3e-2}
+\sisetup{tight-spacing=true}
 
 % Sort-of chicago-style (humanities) inline references.
 \bibliographystyle{alpha}
@@ -200,18 +202,6 @@ represented by $\rarrow{L} = l_1, l_2,\ldots,l_D$.
 
 \subsection{SPSO 2011}
 
-%\subsubsection{In Summary}
-
-%\begin{description}
-  %\item[Type] local-best, with adaptive-random topology.
-  %\item[Particles] 30
-  %\item[Number of neighbourhoods]
-  %\item[Initial velocity] idk
-  %\item[Inertia] $1/(2*log(2))$
-  %\item[$c_1$] $0.5 * log(2)$
-  %\item[$c_2$] $0.5 * log(2)$
-%\end{description}
-
 The effect of the modifications below is this new velocity-update formula, where
 $H_i(\rarrow{G}_i^t,||\rarrow{G}_i^t - \rarrow{X}_i^t||)$ describes the
 hypersphere:
@@ -309,6 +299,9 @@ In order to overcome potential bias, the functions have been shifted such that
 the particles are not initialized around the global
 minimum~\cite{Monson:2005fn}.
 
+Plots of the functions are 2-dimensional, with the z-axis representing the
+function evaluation or fitness value for the given (x,y) positional coordinate.
+
 %The Rosenbrock function is a widely test function in optimization. PSO was first
 %tested against it in~\cite{Shi:1999je}, with an algorithm somewhat similar to
 %the Canonical PSO described here.
@@ -341,20 +334,71 @@ minimum~\cite{Monson:2005fn}.
 
 \end{multicols}
 
-\section{Experiments}
+\section{Experimental Setup}
 
-\subsection{Setup}
+\subsection{Functions}
 
-The following parameters were setup for both simulations:
+Separate results are given for runs carried out in 2 and 30 dimensions.
 
+\subsection{Parameter selection}
+
+In addition to and as a result of the differences in approach outlined above,
+SPSO-2011 and Canonical PSO have different parameters.  This section lists the
+setup for each PSO variation.
+
+Four objective functions widely used in optimizatin literature have been tested
+against, the results of which appear below. Two sets of results are presented,
+against functions in 2 and 30 dimensions.
+
+The maximum number of function evaluations is dependent on the number of
+dimensions. This is in keeping with other PSO testing and allows for better
+comparisons.
+
+\subsubsection{Canonical PSO}
 \begin{description}
-  \item[Swarm size] 40
-  \item[Maximum function evaluations] 100000
+  \item[Swarm size] 30
+  \item[Particles per neighbourhood] (40/3) $\approx$ 13
   \item[Number of runs] 25
+  \item[Maximum function evaluations] \num{1e5} in 2D, \num{1e6} in 30D
+  \item[Inertia] $0.9 \rightarrow 0.4$
+  \item[Cognitive weight] 1.49618
+  \item[Social weight] 1.49618
 \end{description}
 
+\subsubsection{SPSO-2011}
+\begin{description}
+  \item[Swarm size] 30
+  \item[Number of runs] 25
+  \item[Maximum function evaluations] \num{1e5} in 2D, \num{1e6} in 30D
+  \item[Inertia] $1/(2*log(2))$ (0.7213)
+  \item[Cognitive weight] $0.5 * log(2)$ (0.3466)
+  \item[Social weight] $0.5 * log(2)$ (0.3466)
+  \item[K] 3
+\end{description}
 
 \section{Experimental results}
+
+Unless otherwise noted, average is the mean.
+
+%SPSO2011 can present: Average fitness across all runs. Average number of
+%function evaluations. Success Rate. Average time.
+
+%Canonical PSO can present: Success rate, bestfg(?, time elapsed for all runs.
+
+\subsection{10 dimensional Rosenbrock}
+
+\subsubsection{Canonical PSO}
+
+
+
+
+
+
+
+
+\subsection{2 Dimensions}
+
+\subsection{30 Dimensions}
 
 \section{Analysis of results}
 
