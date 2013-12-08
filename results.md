@@ -54,14 +54,29 @@ behaves correctly and differently from Canonical PSO, which has no such feature.
 
 ## Thirty Dimensions
 
-### Rosenbrock
+### Rosenbrock (6,30)
 
 * Error threshold (admissible error) = 1e+02 (100)
 |                                        | Canonical PSO | SPSO-2011 |
 | --                                     | :--:          | :--:      |
-| Success Rate                           | | |
-| Average fitness                        | | |
-| Average number of function evaluations | | |
-| Average time                           | | |
+| Success Rate                           | 96 | |
+| Average fitness                        | 1.07e+02 | |
+| Average number of function evaluations | 1.80e+05 | |
+| Average time                           | 2.16e+02 | |
+
+### Schwefel (8,12)
+
+### Sphere (9,26)
+
+### Rastrigin (5,27)
+
+* Error threshold (admissible error) = 1e+02 (100)
+|                                        | Canonical PSO | SPSO-2011 |
+| --                                     | :--:          | :--:      |
+| Success Rate                           | 100 | |
+| Average fitness                        | 9.85e+01 | 3.44e+01 |
+| Average number of function evaluations | 1.09e+05 | |
+| Average time                           | 6.03e+01 | |
+
 
 
