@@ -8,21 +8,18 @@
 \usepackage{amsmath} % better rendering of formulae
 \usepackage{graphicx} % graphics support
 \usepackage{epstopdf} % eps support
-\usepackage{multicol} % multiple columns
-\usepackage{caption} % helps with multicol + figures
 \usepackage{siunitx} % easier to use and read standard form. E.g. \num{3e-2}
 \sisetup{tight-spacing=true}
+
+% multi figures on one line
+\usepackage{caption}
+\usepackage{subcaption}
 
 % Sort-of chicago-style (humanities) inline references.
 \bibliographystyle{alpha}
 
 % aligns overrightarrows in math formulae
 \newcommand{\rarrow}[1]{\overrightarrow{#1\vphantom{b}}}
-
-% sensible figures in multi-column environments
-\newenvironment{Figure}
-  {\par\medskip\noindent\minipage{\linewidth}}
-  {\endminipage\par\medskip}
 
 \begin{document}
 
@@ -33,7 +30,7 @@
 This paper compares the gold-standard of Particle Swarm Optimization
 (SPSO-2011) with a canonical PSO implementation that is similar to original
 designs from 1995. The success of each algorithm is determined by its ability
-to optimize 4 functions. We begin by introducing PSO and the differences
+to optimize 3 functions. We begin by introducing PSO and the differences
 between the algorithms under test, and conclude by evaluating the extent to
 which limitations of PSO have been addressed by the current standard.
 
@@ -166,25 +163,27 @@ This has the effect of changing the algorithm such that instead
 of a global best $g$, the best-known position of a particle's neighbourhood is
 represented by $\rarrow{L} = l_1, l_2,\ldots,l_D$.
 
-\begin{multicols}{3}
-  \begin{Figure}
-    \centering
-    \includegraphics[width=\linewidth]{global_best_topology.eps}\label{fig:global_best_topology}
-    \captionof{figure}{Global-best topology}
-  \end{Figure}
-
-  \begin{Figure}
-    \centering
-    \includegraphics[width=\linewidth]{ring_topology.eps}\label{fig:ring_topology}
-    \captionof{figure}{Ring topology}
-  \end{Figure}
-
-  \begin{Figure}
-    \centering
-    \includegraphics[width=\linewidth]{star_topology.eps}\label{fig:adaptive_random_topology}
-    \captionof{figure}{Adaptive-random topology}
-  \end{Figure}
-\end{multicols}
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{global_best_topology.eps}
+    \captionof{figure}{Global-best}
+    \label{fig:global_best_topology}
+  \end{subfigure}
+  ~
+  \begin{subfigure}[b]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{ring_topology.eps}
+    \captionof{figure}{Ring}
+    \label{fig:ring_topology}
+  \end{subfigure}
+  ~
+  \begin{subfigure}[b]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{star_topology.eps}
+    \captionof{figure}{Adaptive-random}
+    \label{fig:adaptive_random_topology}
+  \end{subfigure}
+  \caption{Swarm Topologies}
+\end{figure}
 
 \subsection{SPSO 2011}
 
@@ -240,21 +239,21 @@ positions, $DNPP$.  Figure 4 and Figure 5 graphically depict this change in
 behaviour.  The process and its effects are explained more thoroughly
 in~\cite{ZambranoBigiarini:2013dl}.
 
-\begin{multicols}{2}
-
-\begin{Figure}
+\begin{figure}
   \centering
-  \includegraphics[width=0.8\linewidth]{dnpp_canonical.png}\label{fig:dnpp_canonical}
-  \captionof{figure}{DNPP in Canonical PSO, adapted from~\cite{ZambranoBigiarini:2013dl}}
-\end{Figure}
-
-\begin{Figure}
-  \centering
-  \includegraphics[width=0.8\linewidth]{dnpp_spso11.png}\label{fig:dnpp_spso11}
-  \captionof{figure}{DNPP in SPSO-2011, adapted from~\cite{ZambranoBigiarini:2013dl}}
-\end{Figure}
-
-\end{multicols}
+  \begin{subfigure}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{dnpp_canonical.png}
+    \caption{Canonical PSO}
+    \label{fig:dnpp_canonical}
+  \end{subfigure}
+  ~
+  \begin{subfigure}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{dnpp_spso11.png}
+    \caption{SPSO-2011}
+    \label{fig:dnpp_canonical}
+  \end{subfigure}
+  \caption{DNPP, adapted from~\cite{ZambranoBigiarini:2013dl}}
+\end{figure}
 
 \subsubsection{Confinement} % aka velocity clamping
 
@@ -286,7 +285,7 @@ In order to overcome potential bias, the functions have been shifted such that
 the particles are not initialized around the global
 minimum~\cite{Monson:2005fn}.
 
-Four objective functions widely used in optimizatin literature have been tested
+Three objective functions widely used in optimizatin literature have been tested
 against, the results of which appear below. Experiments have been carried out
 first in 2 and then 20 dimensions.
 
@@ -294,45 +293,34 @@ A Sphere is the simplest of optimization targets, since there are no local
 minimum `traps' that can result in premature convergence. The Rosenbrock
 function is a widely test function in optimization. PSO was first tested against
 it in~\cite{Shi:1999je} using an algorithm somewhat similar to the Canonical PSO
-described here. Schwefel's function is useful in optimization testing because of
-the large geometric distance between the global minimum and other local minima.
-This can lead to optimization algorithms being mislead in the `wrong direction'.
-Finally, the Rastrigin function has been chosen due to its popularity in the
-literature. It features a large number of local minimum clustered around the
-global minimum.
+described here.  Finally, the Rastrigin function has been chosen due to its
+popularity in the literature. It features a large number of local minimum
+clustered around the global minimum.
 
 Plots of the functions are 2-dimensional, with the z-axis representing the
 function evaluation or fitness value for the given (x,y) positional coordinate.
 
-\begin{multicols}{2}
-
-\begin{Figure}
+\begin{figure}
   \centering
-  \includegraphics[width=\linewidth]{../functions/sphere_shifted.eps}
-  \captionof{figure}{Sphere Function}
-\end{Figure}
-
-\begin{Figure}
-  \centering
-  \includegraphics[width=\linewidth]{../functions/rosenbrock_shifted.eps}
-  \captionof{figure}{Rosenbrock Function}
-\end{Figure}
-
-\begin{Figure}
-  \centering
-  \includegraphics[width=\linewidth]{../functions/schwefel.eps}
-  \captionof{figure}{Schwefel Function}
-\end{Figure}
-
-\begin{Figure}
-  \centering
-  \includegraphics[width=\linewidth]{../functions/rastrigin_shifted.eps}
-  \captionof{figure}{Rastrigin Function}
-\end{Figure}
-
-\end{multicols}
-
-
+  \begin{subfigure}[b]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{../functions/sphere_shifted.eps}
+    \caption{2D Sphere}
+    \label{fig:sphere}
+  \end{subfigure}
+  ~
+  \begin{subfigure}[b]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{../functions/rosenbrock_shifted.eps}
+    \caption{2D Rosenbrock}
+    \label{fig:rosenbrock}
+  \end{subfigure}
+  ~
+  \begin{subfigure}[b]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{../functions/rastrigin_shifted.eps}
+    \caption{2D Rastrigin}
+    \label{fig:rastrigin}
+  \end{subfigure}
+  \caption{Optimization Functions}\label{fig:functions}
+\end{figure}
 
 \subsection{Parameter selection}
 
@@ -351,7 +339,7 @@ minimise the number of variables thus providing a more valid comparison.
 \subsubsection{Swarm size}
 
 It is not currently known how to pick the optimal number of
-particles~\cite{Trelea:2003dv}, so a medium value of 40 has been chosen.
+particles~\cite{Trelea:2003dv}, so a medium value of 20 has been chosen.
 Increasing the swarm size increases the success rate at the expense of function
 evaluations. Since our stopping criteria in this simulation is a set number of
 function evaluations, it is important that the swarm size remains constant for
@@ -362,81 +350,80 @@ dimensions, which is in keeping with the literature.
 
 \subsubsection{Stopping criteria}
 
-For Rastrigin, Sphere and Rosenbrock the success criteria is \num{1e-04}. For
-Schwefel, the success criteria is \num{1e-02}. This matches the competition
-requirements for CEC2013, and is the default configuration from the SPS0-2011
-MATLAB implementation.
+For Rastrigin, Sphere and Rosenbrock the success criteria is \num{1e-04}. This
+matches the competition requirements for CEC2013, and is the default
+configuration from the SPS0-2011 MATLAB implementation.
 
 \begin{table}
+\centering
   \begin{tabular}{lll}
   \hline
-  ~                            & CanonicalPSO          & SPSO-2011 \\ \hline
-  Swarm size                   & 20                    & 20 \\
-  Particles per neighbourhood  & 7                     & $\approx$ 7 \\
-  Number of runs               & 25                    & 25 \\
-  Maximum function evaluations & $D(\num{1e+05})$      & $D(\num{1e+05})$ \\
-  Inertia                      & $0.9 \rightarrow 0.4$ & $\frac{1}{2\log{2}} \approx 0.7213$ \\
-  Cognitive weight             & 1.49618               & $\frac{1}{2} + \log{2} \approx 0.3466$ \\
-  Social weight                & 1.49618               & $\frac{1}{2} + \log{2} \approx 0.3466$ \\
+                                & Canonical PSO         & SPSO-2011 \\ \hline
+  Swarm size                    & 20                    & 20 \\
+  Particles per neighbourhood   & 7                     & $\approx$ 7 \\
+  Number of runs                & 25                    & 25 \\
+  Maximum function evaluations  & $D(\num{1e+05})$      & $D(\num{1e+05})$ \\
+  Inertia                       & $0.9 \rightarrow 0.4$ & $\frac{1}{2\log{2}} \approx 0.7213$ \\
+  Cognitive weight              & 1.49618               & $\frac{1}{2} + \log{2} \approx 0.3466$ \\
+  Social weight                 & 1.49618               & $\frac{1}{2} + \log{2} \approx 0.3466$ \\
   \end{tabular}
+  \caption{Parameter selection for Canonical PSO and SPSO}
+  \label{tab:parameters}
 \end{table}
 
 \section{Results}
 
-\subsection{Function Evaluations, Average Time, Success Rate}
-
-\begin{center}
-  \begin{tabular}{lllll}
+\begin{table}
+\centering
+\begin{tabular}{lllll}
   \hline
-  ~                              & Avg. Func. Evals. & Avg. Time      & Succ\% \\ \hline
+                                 & Avg. Func. Evals. & Avg. Time      & Succ\% \\ \hline
   Sphere 2D (Canonical PSO)      & \num{7.03e+03}    & \num{9.13e-02} & 100    \\
-  Sphere 2D (SPSO-2011)          & \num{9.87e+02}    & \num{5.77e-02} & 100    \\
+  Sphere 2D (SPSO-2011)          & \num{9.87e+02}    & \num{5.77e-02} & 100    \\ \hline
   Rosenbrock 2D (Canonical PSO)  & \num{1.86e+04}    & \num{2.18e-01} & 100    \\
-  Rosenbrock 2D (SPSO-2011)      & \num{1.59e+03}    & \num{8.57e-02} & 100    \\
+  Rosenbrock 2D (SPSO-2011)      & \num{1.59e+03}    & \num{8.57e-02} & 100    \\ \hline
   Rastrigin 2D (Canonical PSO)   & \num{9.14e+03}    & \num{1.12e-01} & 100    \\
-  Rastrigin 2D (SPSO-2011)       & \num{1.62e+03}    & \num{9.42e-02} & 100    \\
+  Rastrigin 2D (SPSO-2011)       & \num{1.62e+03}    & \num{9.42e-02} & 100    \\ \hline
   Sphere 20D (Canonical PSO)     & \num{2.58e+05}    & \num{2.66e+01} & 100    \\
-  Sphere 20D (SPSO-2011)         & \num{5.12e+03}    & \num{9.74e-01} & 100    \\
+  Sphere 20D (SPSO-2011)         & \num{5.12e+03}    & \num{9.74e-01} & 100    \\ \hline
   Rosenbrock 20D (Canonical PSO) & \num{1.51e+06}    & \num{2.21e+01} & 44     \\
-  Rosenbrock 20D (SPSO-2011)     & \num{1.63e+06}    & \num{3.11e+02} & 84     \\
-  Rastrigin 20D (Canonical PSO)  & \num{20e+05}      & \num{1.62e+01} & 0      \\
-  Rastrigin 20D (SPSO-2011)      & \num{20e+05}      & \num{3.92e+02} & 0      \\
-  \end{tabular}
-\end{center}
+  Rosenbrock 20D (SPSO-2011)     & \num{1.63e+06}    & \num{3.11e+02} & 84     \\ \hline
+  Rastrigin 20D (Canonical PSO)  & \num{2.00e+06}    & \num{1.62e+01} & 0      \\
+  Rastrigin 20D (SPSO-2011)      & \num{2.00e+06}    & \num{3.92e+02} & 0      \\
+\end{tabular}
+\caption{Additional experimental data}
+\label{tab:additional_data}
+\end{table}
 
-\subsection{Fitness Scores}
-
-\begin{center}
-  \begin{tabular}{lllll}
+\begin{table}
+\centering
+\begin{tabular}{lllll}
   \hline
-  ~                              & Min            & Median         & Max            & Std. Dev.      \\ \hline
+                                 & Min            & Median         & Max            & Std. Dev.      \\ \hline
   Sphere 2D (Canonical PSO)      & \num{1.53e-07} & \num{3.77e-05} & \num{9.11e-05} & \num{2.99e-05} \\
-  Sphere 2D (SPSO-2011)          & \num{4.86e-06} & \num{4.69e-05} & \num{9.84e-05} & \num{2.64e-05} \\
+  Sphere 2D (SPSO-2011)          & \num{4.86e-06} & \num{4.69e-05} & \num{9.84e-05} & \num{2.64e-05} \\ \hline
   Rosenbrock 2D (Canonical PSO)  & \num{5.80e-06} & \num{5.90e-05} & \num{9.53e-05} & \num{2.86e-05} \\
-  Rosenbrock 2D (SPSO-2011)      & \num{2.46e-06} & \num{5.45e-05} & \num{9.64e-05} & \num{3.41e-05} \\
+  Rosenbrock 2D (SPSO-2011)      & \num{2.46e-06} & \num{5.45e-05} & \num{9.64e-05} & \num{3.41e-05} \\ \hline
   Rastrigin 2D (Canonical PSO)   & \num{2.48e-07} & \num{5.87e-05} & \num{9.89e-05} & \num{3.18e-05} \\
-  Rastrigin 2D (SPSO-2011)       & \num{7.57e-06} & \num{6.31e-05} & \num{9.97e-05} & \num{2.94e-05} \\
+  Rastrigin 2D (SPSO-2011)       & \num{7.57e-06} & \num{6.31e-05} & \num{9.97e-05} & \num{2.94e-05} \\ \hline
   Sphere 20D (Canonical PSO)     & \num{7.29e-05} & \num{9.41e-05} & \num{9.99e-05} & \num{7.32e-06} \\
-  Sphere 20D (SPSO-2011)         & \num{7.26e-05} & \num{9.19e-05} & \num{9.95e-05} & \num{5.84e-06} \\
+  Sphere 20D (SPSO-2011)         & \num{7.26e-05} & \num{9.19e-05} & \num{9.95e-05} & \num{5.84e-06} \\ \hline
   Rosenbrock 20D (Canonical PSO) & \num{9.97e-06} & \num{2.55e-02} & \num{1.62e+01} & \num{3.50e+00} \\
-  Rosenbrock 20D (SPSO-2011)     & \num{9.99e-05} & \num{6.38e-01} & \num{3.99e+00} & \num{1.49e+00} \\
+  Rosenbrock 20D (SPSO-2011)     & \num{9.99e-05} & \num{6.38e-01} & \num{3.99e+00} & \num{1.49e+00} \\ \hline
   Rastrigin 20D (Canonical PSO)  & \num{9.95e-01} & \num{8.95e+00} & \num{1.99e+01} & \num{5.09e+00} \\
   Rastrigin 20D (SPSO-2011)      & \num{1.19e+01} & \num{2.94e+01} & \num{1.02e+02} & \num{2.50e+01} \\
-  \end{tabular}
-\end{center}
+\end{tabular}
+\caption{Fitness Scores}
+\label{tab:fitness_scores}
+\end{table}
 
 \section{Analysis}
-
-The Schwefel results for Canonical PSO are invalid. This is because the
-properties of the Schwefel function are such that better solutions exist outside
-the search-space. Since SPSO-2011 features velocity and positional clamping it
-behaves correctly and differently from Canonical PSO, which has no such feature.
 
 The null hypothesis 
 
 %Provide explanations for the observations above.
 
-Of the four functions tested, Sphere in both dimensions was predicted to be the
+Of the three functions tested, Sphere in both dimensions was predicted to be the
 easiest and for PSO to optimize. % this plays out in the results...?
 
 
