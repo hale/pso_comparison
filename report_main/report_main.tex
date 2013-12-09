@@ -114,7 +114,7 @@ are explained in detail below in defining the two algorithms under test.
 \subsection{Canonical PSO}
 
 Early analysis of the original PSO algorithm revealed some limitations, chief
-among them premature convergence~\cite{vandenBurgh:2002tk} and a comparatively
+among them premature convergence~\cite{vandenBergh:2002tk} and a comparatively
 slow convergence speed~\cite{Shi:1998kl}. Alterations to the original approach
 were suggested, and since some of these advancements have been present for a
 decade or more, they have been included in this specification of Canonical
@@ -149,7 +149,7 @@ has the unfortunate property of premature convergence. In fact, until Guaranteed
 Convergence PSO was introduced~\cite{vandenBergh:2002tk}, the algorithm could
 not even guarantee convergence on a local minima.
 
-A solution was proposed in the form of $local best$ or $lbest$ PSO, which groups
+A solution was proposed in the form of local best or $lbest$ PSO, which groups
 the particles into distinct neighbourhoods, each with their own best-so-far
 position value~\cite{Suganthan:1999iv}. Instead of a globally-known best
 solution, each neighbourhood has its own local-best position. Earlier versions
@@ -157,7 +157,8 @@ of PSO were characterised by using this $lbest$ variation, and so it has been
 chosen for the comparison. The paper that first proposed $lbest$ PSO used
 Eculidian distance to determine neighbourhood groupings.  Canonical PSO uses the
 more popular and computationally cheaper ring topology, which creates
-neighbourhoods based on the array index of the particle swarm~(Figure 2).
+neighbourhoods based on the array index of the particle swarm
+(figure~\ref{fig:ring_topology}).
 
 This has the effect of changing the algorithm such that instead
 of a global best $g$, the best-known position of a particle's neighbourhood is
@@ -183,6 +184,7 @@ represented by $\rarrow{L} = l_1, l_2,\ldots,l_D$.
     \label{fig:adaptive_random_topology}
   \end{subfigure}
   \caption{Swarm Topologies}
+  \label{fig:swarm_topology}
 \end{figure}
 
 \subsection{SPSO 2011}
@@ -215,10 +217,11 @@ hyperspheres~\cite{Clerc:2012to}.
 \subsubsection{Neighbourhood Topology}
 
 Like Canonical PSO, SPSO-2011 also supports neighbourhoods. However whereas
-Canonical PSO groups neighbours in a ring topology~(Figure~2), SPSO-2011
-implements adaptive-random topology~(Figure~3). This introduces variability into
-the neighbourhoods, whereby the neighbourhood changes each time the local-best
-score stays the same.
+Canonical PSO groups neighbours in a ring
+topology~(figure~\ref{fig:ring_topology}), SPSO-2011 implements adaptive-random
+topology~(figure~\ref{fig:adaptive_random_topology}). This introduces
+variability into the neighbourhoods, whereby the neighbourhood changes each
+time the local-best score stays the same.
 
 With the suggested parameters, this means each particle informs itself plus a
 maximum of two other randomly selected particles. By implication each particle
@@ -235,8 +238,8 @@ have minimums on the axis of the search space are much easier to optimize. The
 technique to address this requires using rotational invariance to perform the
 calculation based on a point slightly skewed from the known positions. The
 effect of this operation is a more uniform distribution of all next possible
-positions, $DNPP$.  Figure 4 and Figure 5 graphically depict this change in
-behaviour.  The process and its effects are explained more thoroughly
+positions, $DNPP$. See figure~\ref{fig:dnpp} for a graphical depiction of this
+change in behaviour.  The process and its effects are explained more thoroughly
 in~\cite{ZambranoBigiarini:2013dl}.
 
 \begin{figure}
@@ -250,9 +253,10 @@ in~\cite{ZambranoBigiarini:2013dl}.
   \begin{subfigure}[b]{0.4\textwidth}
     \includegraphics[width=\textwidth]{dnpp_spso11.png}
     \caption{SPSO-2011}
-    \label{fig:dnpp_canonical}
+    \label{fig:dnpp_spso11}
   \end{subfigure}
   \caption{DNPP, adapted from~\cite{ZambranoBigiarini:2013dl}}
+  \label{fig:dnpp}
 \end{figure}
 
 \subsubsection{Confinement} % aka velocity clamping
@@ -297,8 +301,9 @@ described here.  Finally, the Rastrigin function has been chosen due to its
 popularity in the literature. It features a large number of local minimum
 clustered around the global minimum.
 
-Plots of the functions are 2-dimensional, with the z-axis representing the
-function evaluation or fitness value for the given (x,y) positional coordinate.
+Plots of the functions~\ref{fig:functions} are 2-dimensional, with the z-axis
+representing the function evaluation or fitness value for the given (x,y)
+positional coordinate.
 
 \begin{figure}
   \centering
@@ -319,7 +324,8 @@ function evaluation or fitness value for the given (x,y) positional coordinate.
     \caption{2D Rastrigin}
     \label{fig:rastrigin}
   \end{subfigure}
-  \caption{Optimization Functions}\label{fig:functions}
+  \caption{Optimization Functions}
+  \label{fig:functions}
 \end{figure}
 
 \subsection{Parameter selection}
