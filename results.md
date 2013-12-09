@@ -66,7 +66,28 @@ behaves correctly and differently from Canonical PSO, which has no such feature.
 
 ### Schwefel (8,12)
 
+* Error threshold (admissible error) = 1e+02 (100)
+|                                        | Canonical PSO | SPSO-2011 |
+| --                                     | :--:          | :--:      |
+| Success Rate                           | 100 | |
+| Average fitness                        | -3.54e+03 | |
+| Average number of function evaluations | 3.07e+02 | |
+| Average time                           | 3.04e-02 | |
+
+The results here for Canonical PSO are invalid. This is because the properties
+of the Schwefel function are such that better solutions exist outside the
+search-space. Since SPSO-2011 features velocity and positional clamping it
+behaves correctly and differently from Canonical PSO, which has no such feature.
+
 ### Sphere (9,26)
+
+* Error threshold (admissible error) = 1e+02 (100)
+|                                        | Canonical PSO | SPSO-2011 |
+| --                                     | :--:          | :--:      |
+| Success Rate                           | 100           | 100       |
+| Average fitness                        | 9.32e+03      | 9.06e-05  |
+| Average number of function evaluations | 1.20e+05      | 1.22e+04  |
+| Average time                           | 7.69e+01      | 3.25e+00  |
 
 ### Rastrigin (5,27)
 
@@ -74,7 +95,7 @@ behaves correctly and differently from Canonical PSO, which has no such feature.
 |                                        | Canonical PSO | SPSO-2011 |
 | --                                     | :--:          | :--:      |
 | Success Rate                           | 100 | |
-| Average fitness                        | 9.85e+01 | 3.44e+01 |
+| Average fitness                        | 9.85e+01 | |
 | Average number of function evaluations | 1.09e+05 | |
 | Average time                           | 6.03e+01 | |
 

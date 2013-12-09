@@ -60,23 +60,23 @@ provide a benchmark that mean  ``if your brand new algorithm does not
 significantly `beat' SPSO (on a difficult enough non-biased benchmark) you have
 to improve it''~\cite{Clerc:2012to}.
 
-SPSO is not meant to be outperform every flavour of PSO either generally or on a
-subset of optimization targets~\cite{Bratton:2007hq}. More performant PSO
-implementations exist, but the improvements are either still under scrutiny or
-limited to certain classes of functions.
+This paper is split into several parts. The first section defines PSO in its
+most fundamental form, as first proposed in~\cite{Kennedy:1995bi}. Next, two
+variations of PSO are introduced, which form the basis of the rest of this
+study. Specifying these variations also provides a means to catalogue a
+chronology of PSO developments, with special attention given to the discoveries
+that have made their way into today's standards. The subsequent sections consist
+of outlining some speculative hypotheses and an experimental setup to test these
+claims empirically. Finally the results of this experiment are analysed, and
+some pointers are given to current trends in PSO research.
 
-Comparing the contemporary baseline-performance of PSO with an implementation
-that resembles PSO from the late nineties allows us to assess how far the field
-has come, and to what extent some of PSO's earlier limitations are still
-relevant.
-
-\section{PSO Variants under Test}
+\section{Particle Swarm Optimization: Background}
 
 \subsection{Original PSO}
 
-The algorithm consists of a population of particles, where each particle
-represents a candidate solution to the objective function.  The number of
-particles is referred to as the swarm-size, and is notated by $S$.
+PSO consists of a population of particles, where each particle represents a
+candidate solution to the objective function.  The number of particles is
+referred to as the swarm-size, and is notated by $S$.
 
 The dimension of the search space $D$ determines the magnitude of the position
 and velocity matrices for each particle. Formally, the $position$ and $velocity$
@@ -130,20 +130,6 @@ update equation to:
 \rarrow{V}_i^{t+1} = \omega \rarrow{V}_i^t + c_1 \rarrow{U}_1^t \circ (\rarrow{P}_i^t - \rarrow{X}_i^t) + c_2 \rarrow{U}^t_2 \circ (\rarrow{L}^t - \rarrow{X}_i^t)
 \end{equation}
 
-%\subsubsection{In summary}
-
-%\begin{description}
-  %\item[Type] local-best (with neighbourhoods)
-  %\item[Vmax] Range of search space
-  %\item[Initial velocity] Random between $-Vmac$ and $Vmax$
-  %\item[Initial position] Randomly around the unshifted center of the function
-  %\item[Topology] Ring-topology
-  %\item[Peers per neigbourhood] 10
-  %\item[Inertia] Linear decreasing from 0.9 to 0.4
-  %\item[$c_1$] 1.49618
-  %\item[$c_2$] 1.49618
-%\end{description}
-
 \subsubsection{Inertia Weight}
 
 Upon closer examination of the original PSO update procedure, it can be seen
@@ -168,13 +154,13 @@ not even guarantee convergence on a local minima.
 
 A solution was proposed in the form of $local best$ or $lbest$ PSO, which groups
 the particles into distinct neighbourhoods, each with their own best-so-far
-position value~\cite{Sugunthan:1999iv}. Instead of a globally-known best
+position value~\cite{Suganthan:1999iv}. Instead of a globally-known best
 solution, each neighbourhood has its own local-best position. Earlier versions
 of PSO were characterised by using this $lbest$ variation, and so it has been
 chosen for the comparison. The paper that first proposed $lbest$ PSO used
 Eculidian distance to determine neighbourhood groupings.  Canonical PSO uses the
 more popular and computationally cheaper ring topology, which creates
-neighbourhoods based on the array index of the particle swarm.
+neighbourhoods based on the array index of the particle swarm~(Figure 2).
 
 This has the effect of changing the algorithm such that instead
 of a global best $g$, the best-known position of a particle's neighbourhood is
@@ -202,19 +188,21 @@ represented by $\rarrow{L} = l_1, l_2,\ldots,l_D$.
 
 \subsection{SPSO 2011}
 
-The effect of the modifications below is this new velocity-update formula, where
-$H_i(\rarrow{G}_i^t,||\rarrow{G}_i^t - \rarrow{X}_i^t||)$ describes the
-hypersphere:
+The effect of the modifications below is a new velocity-update formula.
+$H_i(\rarrow{G}_i^t,||\rarrow{G}_i^t - \rarrow{X}_i^t||)$ defines a
+hypersphere.
 
 \begin{equation}
   \rarrow{V}_i^{t+1} = \omega \rarrow{V}_i^t + H_i(\rarrow{G}_i^t,||\rarrow{G}_i^t - \rarrow{X}_i^t||) - \rarrow{X}_i^t
 \end{equation}
 
-
 \subsubsection{Initialisation of the swarm}
 
 Like Canonical PSO, the initial position of particles is randomised within the
-search space. Unlike Canonical PSO, the velocity is determined by:
+search space. The velocity initialization is modified in order to address a
+problem where randomised initial velocities would cause particles to exit the
+search space~\cite{Helwig:2008bl}.The new initialization procedure for velocity
+prevents this form happening, and is calculated like so:
 
 \begin{equation}
   V_i^0 = U(D_{min} - X_i^d, D_{max} - X_i^d)
@@ -225,14 +213,13 @@ search-space into a hypercube. This is in order to gain maximum benefit from the
 new velocity update equation, which makes use of
 hyperspheres~\cite{Clerc:2012to}.
 
-\subsubsection{Neighbourhood}
+\subsubsection{Neighbourhoods}
 
 Like Canonical PSO, SPSO-2011 also supports neighbourhoods. However whereas
-Canonical PSO groups neighbours in a ring
-topology~(Figure~\ref{fig:ring_topology}), SPSO-2011 implements adaptive-random
-topology~(Figure~\ref{fig:adaptive_random_topology}). This introduces
-variability into the neighbourhoods, whereby the neighbourhood changes each time
-the local-best score stays the same.
+Canonical PSO groups neighbours in a ring topology~(Figure~2), SPSO-2011
+implements adaptive-random topology~(Figure~3). This introduces variability into
+the neighbourhoods, whereby the neighbourhood changes each time the local-best
+score stays the same.
 
 With the suggested parameters, this means each particle informs itself plus a
 maximum of two other randomly selected particles. By implication each particle
@@ -244,12 +231,13 @@ iteration''~\cite{Miranda:2007er}
 
 \subsubsection{Velocity update equations}
 
-SPSO-2011 addresses a long running concern in PSO analysis, where functions that
+SPSO-2011 addresses a long running concern in PSO, where functions that
 have minimums on the axis of the search space are much easier to optimize. The
 technique to address this requires using rotational invariance to perform the
 calculation based on a point slightly skewed from the known positions. The
 effect of this operation is a more uniform distribution of all next possible
-positions, $DNPP$.  This process and its effects are explained more thoroughly
+positions, $DNPP$.  Figure 4 and Figure 5 graphically depict this change in
+behaviour.  The process and its effects are explained more thoroughly
 in~\cite{ZambranoBigiarini:2013dl}.
 
 \begin{multicols}{2}
@@ -292,8 +280,24 @@ increases the success rate at the expense of function evaluations. Since our
 stopping criteria in this simulation is a set number of function evaluations,
 it is important that the swarm size remains constant for both algorithms.
 
+\section{Research Question}
 
-\section{Functions}
+SPSO is not meant to be outperform every flavour of PSO either generally or on a
+subset of optimization targets~\cite{Bratton:2007hq}. More performant PSO
+implementations exist, but the improvements are either still under scrutiny or
+limited to certain classes of functions.
+
+Comparing the contemporary baseline-performance of PSO with an implementation
+that resembles PSO from the late nineties allows us to assess how far the field
+has come, and to what extent some of PSO's earlier limitations are still
+relevant.
+
+
+
+\section{Experimental Design}
+
+
+\subsection{Functions}
 
 In order to overcome potential bias, the functions have been shifted such that
 the particles are not initialized around the global
@@ -302,9 +306,11 @@ minimum~\cite{Monson:2005fn}.
 Plots of the functions are 2-dimensional, with the z-axis representing the
 function evaluation or fitness value for the given (x,y) positional coordinate.
 
-%The Rosenbrock function is a widely test function in optimization. PSO was first
-%tested against it in~\cite{Shi:1999je}, with an algorithm somewhat similar to
-%the Canonical PSO described here.
+Experiments have been carried out first in 2 and then 30 dimensions.
+
+The Rosenbrock function is a widely test function in optimization. PSO was first
+tested against it in~\cite{Shi:1999je}, with an algorithm somewhat similar to
+the Canonical PSO described here.
 
 \begin{multicols}{2}
 
@@ -334,11 +340,7 @@ function evaluation or fitness value for the given (x,y) positional coordinate.
 
 \end{multicols}
 
-\section{Experimental Setup}
 
-\subsection{Functions}
-
-Separate results are given for runs carried out in 2 and 30 dimensions.
 
 \subsection{Parameter selection}
 
@@ -354,55 +356,63 @@ The maximum number of function evaluations is dependent on the number of
 dimensions. This is in keeping with other PSO testing and allows for better
 comparisons.
 
-\subsubsection{Canonical PSO}
-\begin{description}
-  \item[Swarm size] 30
-  \item[Particles per neighbourhood] (40/3) $\approx$ 13
-  \item[Number of runs] 25
-  \item[Maximum function evaluations] \num{1e5} in 2D, \num{1e6} in 30D
-  \item[Inertia] $0.9 \rightarrow 0.4$
-  \item[Cognitive weight] 1.49618
-  \item[Social weight] 1.49618
-\end{description}
+\begin{table}
+  \begin{tabular}{lll}
+  \hline
+  ~                            & Canonical PSO         & SPSO-2011 \\ \hline
+  Swarm size                   & 30                    & 30 \\
+  Particles per neighbourhood  & 13                    & $\approx$ 13 \\
+  Number of runs               & 25                    & 25 \\
+  Maximum function evaluations & \multicolumn{2}{c}{\num{1e5} in 2D, \num{3e6} in 30D} \\
+  Inertia                      & $0.9 \rightarrow 0.4$ & $\frac{1}{2\log{2}} \approx 0.7213$ \\
+  Cognitive weight             & 1.49618               & $\frac{1}{2} + \log{2} \approx 0.3466$ \\
+  Social weight                & 1.49618               & $\frac{1}{2} + \log{2} \approx 0.3466$ \\
+  \end{tabular}
+\end{table}
 
-\subsubsection{SPSO-2011}
-\begin{description}
-  \item[Swarm size] 30
-  \item[Number of runs] 25
-  \item[Maximum function evaluations] \num{1e5} in 2D, \num{1e6} in 30D
-  \item[Inertia] $1/(2*log(2))$ (0.7213)
-  \item[Cognitive weight] $0.5 * log(2)$ (0.3466)
-  \item[Social weight] $0.5 * log(2)$ (0.3466)
-  \item[K] 3
-\end{description}
-
-\section{Experimental results}
+\section{Results}
 
 Unless otherwise noted, average is the mean.
 
-%SPSO2011 can present: Average fitness across all runs. Average number of
-%function evaluations. Success Rate. Average time.
+The following tables contain the data from the experiments outlined above.
 
-%Canonical PSO can present: Success rate, bestfg(?, time elapsed for all runs.
-
-\subsection{10 dimensional Rosenbrock}
-
-\subsubsection{Canonical PSO}
-
-
-
-
-
-
+\begin{table}
+  \begin{tabular}{lll}
+  \hline
+  \textbf{2D Rosenbrock}    & Canonical PSO & SPSO-2011 \\ \hline
+  Success Rate              & 100           & 100 \\
+  Avg. Fitness              & \num{3.94e-04}      & \num{5.18e-05} \\
+  Avg. Function Evaluations & \num{1.30e+04}      & \num{2.23e+03} \\
+  Avg. Time                 & \num{1.5e-01}       & \num{1.37e-01} \\
+  \end{tabular}
+\end{table}
 
 
-\subsection{2 Dimensions}
 
-\subsection{30 Dimensions}
 
-\section{Analysis of results}
+
+%Literally state the data - obvservations, no analysis.
+
+
+The increased running time and higher number of function evaluations for
+SPSO-2011 are likely due to the reduced velocities exhibited by particles in the
+swarm.
+
+\section{Analysis}
+
+The null hypothesis 
+
+%Provide explanations for the observations above.
+
+Of the four functions tested, Sphere in both dimensions was predicted to be the
+easiest and for PSO to optimize. % this plays out in the results...?
+
+
 
 \section{Conclusion}
+
+What has been learnt, analysis of the results and procedure, further research,
+references to current and future work in PSO research.
 
 \bibliography{pso_comparison}
 
