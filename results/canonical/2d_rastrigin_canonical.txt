@@ -1,0 +1,147 @@
+AUTOMATIC INPUT VALIDATION
+
+No automatic changes have been made.
+
+-------------------------
+USER INPUT VALIDATION
+
+Local Best (Lbest) PSO
+200000 FE's maximum
+Position clamping inactive.
+Velocity reset inactive.
+Velocity clamping inactive.
+25 trial(s)
+20 particles
+Inertia weight linearly varied from 0.9 to 0.4 per grouping.
+Cognitive acceleration coefficient, c1: 1.49618 
+Social acceleration coefficient,    c2: 1.49618 
+Rastrigin: 2 dimensions
+Symmetric Initialization: [-5.12,5.12]
+Threshold required for success: 0.0001
+"OnOff_Terminate_Upon_Success" active.
+
+Are the displayed settings as you intended (Y or N)? y
+Start Time: 09Dec-13-19.04.18
+
+-------------------------
+RESULTS
+
+fg = 8.9099e-05
+k = 459
+# of Func. Eval's = 9200
+
+
+ Estimated Time of Completion: 09-Dec-2013 19:04:25 (4% Complete)
+
+fg = 2.4763e-07
+k = 619
+# of Func. Eval's = 12400
+
+fg = 2.5897e-05
+k = 410
+# of Func. Eval's = 8220
+
+fg = 7.7839e-05
+k = 441
+# of Func. Eval's = 8840
+
+fg = 9.8921e-05
+k = 238
+# of Func. Eval's = 4780
+
+fg = 1.718e-05
+k = 498
+# of Func. Eval's = 9980
+
+fg = 9.3798e-05
+k = 247
+# of Func. Eval's = 4960
+
+fg = 8.639e-05
+k = 647
+# of Func. Eval's = 12960
+
+fg = 4.9649e-05
+k = 305
+# of Func. Eval's = 6120
+
+fg = 1.343e-05
+k = 495
+# of Func. Eval's = 9920
+
+fg = 7.9461e-05
+k = 361
+# of Func. Eval's = 7240
+
+fg = 7.8947e-05
+k = 614
+# of Func. Eval's = 12300
+
+fg = 1.8549e-05
+k = 641
+# of Func. Eval's = 12840
+
+fg = 4.6599e-05
+k = 318
+# of Func. Eval's = 6380
+
+fg = 4.8839e-05
+k = 169
+# of Func. Eval's = 3400
+
+fg = 1.5548e-05
+k = 523
+# of Func. Eval's = 10480
+
+fg = 9.7816e-05
+k = 407
+# of Func. Eval's = 8160
+
+fg = 5.9532e-05
+k = 559
+# of Func. Eval's = 11200
+
+fg = 5.3078e-05
+k = 470
+# of Func. Eval's = 9420
+
+fg = 5.8683e-05
+k = 232
+# of Func. Eval's = 4660
+
+fg = 8.5307e-05
+k = 563
+# of Func. Eval's = 11280
+
+fg = 2.9875e-05
+k = 781
+# of Func. Eval's = 15640
+
+fg = 9.3509e-05
+k = 678
+# of Func. Eval's = 13580
+
+fg = 2.1829e-05
+k = 526
+# of Func. Eval's = 10540
+
+fg = 8.7894e-05
+k = 195
+# of Func. Eval's = 3920
+
+objective=Rastrigin, dim=2, np=20, c1=1.4962, c2=1.4962, w_i=0.9, w_f=0.4
+Number of Successful Trials: 25
+Number of Unsuccessful Trials: 0
+Success Rate: 100%
+Mean # of FE's required for success (when successful): 9156.8
+Mean # of function eval's = 9136.8
+fg_median = 5.8683e-05
+fg_mean = 5.7117e-05
+fg_min = 2.4763e-07
+fg_max = 9.8921e-05
+fg_std = 3.1804e-05
+t_per_trial_mean = 0.11203
+time_elapsed = 2.8007
+Column #1: num_trials_successful = 25, iter_success = 460  620  411  442  239  499  248  648  306  496  362  615  642  319  170  524  408  560  471  233  564  782  679  527  196
+
+EDU>> 

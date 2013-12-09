@@ -1,0 +1,60 @@
+EDU>> run('/Users/philiphale/code/SPSO2011/Matlab/test_SPSO2011.m')
+Functions to optimize:
+1-25. CEC05 benchmark functions (D=10 or 30)
+26. Sphere
+27. Rastrigin
+28. Six Hump Camel back (D = 2)
+29. Step
+30. Rosenbrock
+31. Ackley
+32. Griewank
+33. Salomon
+34. Normalized Schwefel
+35. Quartic function, i.e. noise
+36. Rotated hyper-ellipsoid
+37. Norwegian function
+38. Alpine
+39. Branin (D = 2)
+40. Easom (D = 2)
+41. Goldstein and Price (D = 2)
+42. Shubert (D = 2)
+43. Hartmann(3,4) (D = 3)
+44. Shekel (D = 4)
+45. Levy
+46. Michalewicz (D = 10)
+47. Shifted Griewank (D = 10 or D = 30)
+48. Gear Train (D = 4)
+49. Pressure Vessel (D = 4)
+50. Tripod (D = 2)
+51. Compression Spring (D=3)
+Select a function:27
+Choose the dimension of the function:2
+Run = 1 error = 2.133710e-05
+Run = 2 error = 9.792402e-05
+Run = 3 error = 4.297906e-05
+Run = 4 error = 6.627514e-05
+Run = 5 error = 9.974616e-05
+Run = 6 error = 7.261005e-05
+Run = 7 error = 3.158502e-05
+Run = 8 error = 8.444382e-05
+Run = 9 error = 9.040951e-05
+Run = 10 error = 7.397511e-05
+Run = 11 error = 4.747827e-05
+Run = 12 error = 4.986003e-05
+Run = 13 error = 5.348218e-05
+Run = 14 error = 9.442071e-05
+Run = 15 error = 7.170454e-05
+Run = 16 error = 6.759899e-05
+Run = 17 error = 8.937054e-06
+Run = 18 error = 9.694314e-05
+Run = 19 error = 7.827690e-05
+Run = 20 error = 4.336567e-05
+Run = 21 error = 9.972008e-05
+Run = 22 error = 7.869910e-05
+Run = 23 error = 7.574869e-06
+Run = 24 error = 1.602396e-05
+Run = 25 error = 8.332288e-05
+SPSO 2011
+Avg. fitness = 6.31e-05(2.94e-05) Avg. Function Evaluations = 1.62e+03(6.01e+02) Success Rate = 1.00e+02
+Avg. time = 9.42e-02(3.41e-02)
+EDU>> 

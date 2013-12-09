@@ -1,0 +1,147 @@
+AUTOMATIC INPUT VALIDATION
+
+No automatic changes have been made.
+
+-------------------------
+USER INPUT VALIDATION
+
+Local Best (Lbest) PSO
+200000 FE's maximum
+Position clamping inactive.
+Velocity reset inactive.
+Velocity clamping inactive.
+25 trial(s)
+20 particles
+Inertia weight linearly varied from 0.9 to 0.4 per grouping.
+Cognitive acceleration coefficient, c1: 1.49618 
+Social acceleration coefficient,    c2: 1.49618 
+Rosenbrock: 2 dimensions
+Symmetric Initialization: [-30,30]
+Threshold required for success: 0.0001
+"OnOff_Terminate_Upon_Success" active.
+
+Are the displayed settings as you intended (Y or N)? y
+Start Time: 09Dec-13-18.56.45
+
+-------------------------
+RESULTS
+
+fg = 2.026e-05
+k = 712
+# of Func. Eval's = 14260
+
+
+ Estimated Time of Completion: 09-Dec-2013 18:56:54 (4% Complete)
+
+fg = 9.5227e-05
+k = 1013
+# of Func. Eval's = 20280
+
+fg = 5.7541e-05
+k = 758
+# of Func. Eval's = 15180
+
+fg = 6.8232e-05
+k = 1099
+# of Func. Eval's = 22000
+
+fg = 8.4711e-05
+k = 1114
+# of Func. Eval's = 22300
+
+fg = 1.0204e-05
+k = 1234
+# of Func. Eval's = 24700
+
+fg = 3.2414e-05
+k = 989
+# of Func. Eval's = 19800
+
+fg = 8.9251e-05
+k = 1104
+# of Func. Eval's = 22100
+
+fg = 6.8866e-05
+k = 901
+# of Func. Eval's = 18040
+
+fg = 8.2309e-05
+k = 844
+# of Func. Eval's = 16900
+
+fg = 5.4632e-05
+k = 610
+# of Func. Eval's = 12220
+
+fg = 7.8763e-05
+k = 879
+# of Func. Eval's = 17600
+
+fg = 9.5276e-05
+k = 1105
+# of Func. Eval's = 22120
+
+fg = 9.5343e-05
+k = 670
+# of Func. Eval's = 13420
+
+fg = 5.3298e-05
+k = 1164
+# of Func. Eval's = 23300
+
+fg = 9.2178e-05
+k = 1023
+# of Func. Eval's = 20480
+
+fg = 7.0055e-05
+k = 689
+# of Func. Eval's = 13800
+
+fg = 4.2014e-05
+k = 767
+# of Func. Eval's = 15360
+
+fg = 4.4333e-05
+k = 1038
+# of Func. Eval's = 20780
+
+fg = 3.4465e-05
+k = 994
+# of Func. Eval's = 19900
+
+fg = 5.8047e-06
+k = 969
+# of Func. Eval's = 19400
+
+fg = 8.8473e-05
+k = 1097
+# of Func. Eval's = 21960
+
+fg = 5.8996e-05
+k = 718
+# of Func. Eval's = 14380
+
+fg = 1.4421e-05
+k = 947
+# of Func. Eval's = 18960
+
+fg = 4.0247e-05
+k = 740
+# of Func. Eval's = 14820
+
+objective=Rosenbrock, dim=2, np=20, c1=1.4962, c2=1.4962, w_i=0.9, w_f=0.4
+Number of Successful Trials: 25
+Number of Unsuccessful Trials: 0
+Success Rate: 100%
+Mean # of FE's required for success (when successful): 18582.4
+Mean # of function eval's = 18562.4
+fg_median = 5.8996e-05
+fg_mean = 5.9093e-05
+fg_min = 5.8047e-06
+fg_max = 9.5343e-05
+fg_std = 2.8614e-05
+t_per_trial_mean = 0.21774
+time_elapsed = 5.4434
+Column #1: num_trials_successful = 25, iter_success = 713  1014   759  1100  1115  1235   990  1105   902   845   611   880  1106   671  1165  1024   690   768  1039   995   970  1098   719   948   741
+
+EDU>> 

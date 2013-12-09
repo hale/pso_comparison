@@ -1,0 +1,171 @@
+AUTOMATIC INPUT VALIDATION
+
+No automatic changes have been made.
+
+-------------------------
+USER INPUT VALIDATION
+
+Local Best (Lbest) PSO
+2000000 FE's maximum
+Position clamping inactive.
+Velocity reset inactive.
+Velocity clamping inactive.
+25 trial(s)
+20 particles
+Inertia weight linearly varied from 0.9 to 0.4 per grouping.
+Cognitive acceleration coefficient, c1: 1.49618 
+Social acceleration coefficient,    c2: 1.49618 
+Rosenbrock: 20 dimensions
+Symmetric Initialization: [-30,30]
+Threshold required for success: 0.0001
+"OnOff_Terminate_Upon_Success" active.
+
+Are the displayed settings as you intended (Y or N)? y
+Start Time: 09Dec-13-18.55.06
+
+-------------------------
+RESULTS
+
+fg = 3.9869
+k = 99999
+# of Func. Eval's = 2000000
+
+
+ Estimated Time of Completion: 09-Dec-2013 19:07:31 (4% Complete)
+
+fg = 9.9908e-05
+k = 37801
+# of Func. Eval's = 756040
+
+fg = 0.017678
+k = 99999
+# of Func. Eval's = 2000000
+
+fg = 0.25926
+k = 99999
+# of Func. Eval's = 2000000
+
+
+ Estimated Time of Completion: 09-Dec-2013 19:05:30 (16% Complete)
+
+fg = 3.9866
+k = 99999
+# of Func. Eval's = 2000000
+
+fg = 9.9655e-05
+k = 41996
+# of Func. Eval's = 839940
+
+fg = 16.1554
+k = 99999
+# of Func. Eval's = 2000000
+
+
+ Estimated Time of Completion: 09-Dec-2013 19:05:14 (28% Complete)
+
+fg = 3.9866
+k = 99999
+# of Func. Eval's = 2000000
+
+fg = 3.9866
+k = 99999
+# of Func. Eval's = 2000000
+
+
+ Estimated Time of Completion: 09-Dec-2013 19:05:40 (36% Complete)
+
+fg = 3.9866
+k = 99999
+# of Func. Eval's = 2000000
+
+fg = 3.9866
+k = 99999
+# of Func. Eval's = 2000000
+
+
+ Estimated Time of Completion: 09-Dec-2013 19:05:54 (44% Complete)
+
+fg = 9.9939e-05
+k = 55521
+# of Func. Eval's = 1110440
+
+fg = 9.9986e-05
+k = 36230
+# of Func. Eval's = 724620
+
+fg = 9.9953e-05
+k = 52515
+# of Func. Eval's = 1050320
+
+fg = 9.9957e-05
+k = 40545
+# of Func. Eval's = 810920
+
+
+ Estimated Time of Completion: 09-Dec-2013 19:04:39 (60% Complete)
+
+fg = 3.9866
+k = 99999
+# of Func. Eval's = 2000000
+
+fg = 9.9988e-05
+k = 48390
+# of Func. Eval's = 967820
+
+fg = 9.9867e-05
+k = 43077
+# of Func. Eval's = 861560
+
+
+ Estimated Time of Completion: 09-Dec-2013 19:04:20 (72% Complete)
+
+fg = 0.065484
+k = 99999
+# of Func. Eval's = 2000000
+
+fg = 3.9866
+k = 99999
+# of Func. Eval's = 2000000
+
+
+ Estimated Time of Completion: 09-Dec-2013 19:04:35 (80% Complete)
+
+fg = 0.025518
+k = 99999
+# of Func. Eval's = 2000000
+
+fg = 9.9849e-05
+k = 40438
+# of Func. Eval's = 808780
+
+fg = 3.9866
+k = 99999
+# of Func. Eval's = 2000000
+
+
+ Estimated Time of Completion: 09-Dec-2013 19:04:37 (92% Complete)
+
+fg = 9.992e-05
+k = 40630
+# of Func. Eval's = 812620
+
+fg = 9.9796e-05
+k = 45450
+# of Func. Eval's = 909020
+
+objective=Rosenbrock, dim=20, np=20, c1=1.4962, c2=1.4962, w_i=0.9, w_f=0.4
+Number of Successful Trials: 11
+Number of Unsuccessful Trials: 14
+Success Rate: 44%
+Mean # of FE's required for success (when successful): 877481.8182
+Mean # of function eval's = 1506083.2
+fg_median = 0.025518
+fg_mean = 2.0962
+fg_min = 9.9655e-05
+fg_max = 16.1554
+fg_std = 3.5016
+t_per_trial_mean = 22.0713
+time_elapsed = 551.7824
+Column #1: num_trials_successful = 11, iter_success = NaN  37802    NaN    NaN    NaN  41997    NaN    NaN    NaN    NaN    NaN  55522  36231  52516  40546    NaN  48391  43078    NaN    NaN    NaN  40439    NaN  40631  45451
+
+EDU>> 

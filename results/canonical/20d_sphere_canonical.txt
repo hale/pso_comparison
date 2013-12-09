@@ -1,0 +1,150 @@
+AUTOMATIC INPUT VALIDATION
+
+No automatic changes have been made.
+
+-------------------------
+USER INPUT VALIDATION
+
+Local Best (Lbest) PSO
+2000000 FE's maximum
+Position clamping inactive.
+Velocity reset inactive.
+Velocity clamping inactive.
+25 trial(s)
+20 particles
+Inertia weight linearly varied from 0.9 to 0.4 per grouping.
+Cognitive acceleration coefficient, c1: 1.49618 
+Social acceleration coefficient,    c2: 1.49618 
+Spherical: 20 dimensions
+Symmetric Initialization: [-100,100]
+Threshold required for success: 0.0001
+"OnOff_Terminate_Upon_Success" active.
+
+Are the displayed settings as you intended (Y or N)? y
+Start Time: 09Dec-13-19.07.06
+
+-------------------------
+RESULTS
+
+fg = 9.4888e-05
+k = 13010
+# of Func. Eval's = 260220
+
+
+ Estimated Time of Completion: 09-Dec-2013 19:08:13 (4% Complete)
+
+fg = 9.7837e-05
+k = 13149
+# of Func. Eval's = 263000
+
+fg = 7.2872e-05
+k = 13071
+# of Func. Eval's = 261440
+
+fg = 9.8933e-05
+k = 12656
+# of Func. Eval's = 253140
+
+fg = 9.7805e-05
+k = 12602
+# of Func. Eval's = 252060
+
+fg = 8.1983e-05
+k = 13102
+# of Func. Eval's = 262060
+
+fg = 9.8736e-05
+k = 12612
+# of Func. Eval's = 252260
+
+fg = 9.4071e-05
+k = 12926
+# of Func. Eval's = 258540
+
+fg = 8.1648e-05
+k = 12729
+# of Func. Eval's = 254600
+
+fg = 9.989e-05
+k = 12816
+# of Func. Eval's = 256340
+
+fg = 9.5144e-05
+k = 12952
+# of Func. Eval's = 259060
+
+fg = 8.6029e-05
+k = 13148
+# of Func. Eval's = 262980
+
+fg = 8.9773e-05
+k = 13067
+# of Func. Eval's = 261360
+
+fg = 8.76e-05
+k = 12301
+# of Func. Eval's = 246040
+
+fg = 9.8712e-05
+k = 13101
+# of Func. Eval's = 262040
+
+fg = 9.2291e-05
+k = 13094
+# of Func. Eval's = 261900
+
+fg = 9.1676e-05
+k = 12528
+# of Func. Eval's = 250580
+
+fg = 8.1816e-05
+k = 13064
+# of Func. Eval's = 261300
+
+fg = 9.9808e-05
+k = 13127
+# of Func. Eval's = 262560
+
+fg = 8.9037e-05
+k = 12787
+# of Func. Eval's = 255760
+
+fg = 8.3742e-05
+k = 12531
+# of Func. Eval's = 250640
+
+
+ Estimated Time of Completion: 09-Dec-2013 19:08:12 (84% Complete)
+
+fg = 9.8076e-05
+k = 13571
+# of Func. Eval's = 271440
+
+fg = 9.669e-05
+k = 12846
+# of Func. Eval's = 256940
+
+fg = 9.9866e-05
+k = 12227
+# of Func. Eval's = 244560
+
+fg = 9.2586e-05
+k = 13313
+# of Func. Eval's = 266280
+
+objective=Spherical, dim=20, np=20, c1=1.4962, c2=1.4962, w_i=0.9, w_f=0.4
+Number of Successful Trials: 25
+Number of Unsuccessful Trials: 0
+Success Rate: 100%
+Mean # of FE's required for success (when successful): 257904
+Mean # of function eval's = 257884
+fg_median = 9.4071e-05
+fg_mean = 9.206e-05
+fg_min = 7.2872e-05
+fg_max = 9.989e-05
+fg_std = 7.3238e-06
+t_per_trial_mean = 2.6602
+time_elapsed = 66.5038
+Column #1: num_trials_successful = 25, iter_success = 13011  13150  13072  12657  12603  13103  12613  12927  12730  12817  12953  13149  13068  12302  13102  13095  12529  13065  13128  12788  12532  13572  12847  12228  13314
+
+EDU>> 
