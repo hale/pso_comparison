@@ -378,16 +378,95 @@ dimensions, which is in keeping with the literature.
 
 Unless otherwise noted, average is the mean.
 
-The following tables contain the data from the experiments outlined above.
+\subsection{2D Functions}
 
 \begin{table}
   \begin{tabular}{lll}
   \hline
-  \textbf{2D Rosenbrock}    & Canonical PSO & SPSO-2011 \\ \hline
-  Success Rate              & 100           & 100 \\
-  Avg. Fitness              & \num{3.94e-04}      & \num{5.18e-05} \\
-  Avg. Function Evaluations & \num{1.30e+04}      & \num{2.23e+03} \\
-  Avg. Time                 & \num{1.5e-01}       & \num{1.37e-01} \\
+  \textbf{2D Rosenbrock} & Canonical PSO  & SPSO-2011 \\ \hline
+  Success Rate           & 100            & 100 \\
+  Avg. Fitness           & \num{3.94e-04} & \num{5.18e-05} \\
+  Avg. Func. Evals.      & \num{1.30e+04} & \num{2.23e+03} \\
+  Avg. Time              & \num{1.50e-01} & \num{1.37e-01} \\
+  \end{tabular}
+\end{table}
+
+\begin{table}
+  \begin{tabular}{lll}
+  \hline
+  \textbf{2D Schwefel} & Canonical PSO   & SPSO-2011 \\ \hline
+  Success Rate         & 100             & 100 \\
+  Avg. Fitness         & \num{-3.93e+02} & \num{6.43e-03} \\
+  Avg. Func. Evals.    & \num{9.92e+01}  & \num{7.91e+03} \\
+  Avg. Time            & \num{2.10e-02}  & \num{9.63e-01} \\
+  \end{tabular}
+\end{table}
+
+\begin{table}
+  \begin{tabular}{lll}
+  \hline
+  \textbf{2D Sphere} & Canonical PSO  & SPSO-2011 \\ \hline
+  Success Rate       & 100            & 100 \\
+  Avg. Fitness       & \num{4.46e-08} & \num{5.29e-05} \\
+  Avg. Func. Evals.  & \num{1.24e+04} & \num{1.83e+03} \\
+  Avg. Time          & \num{1.35e-01} & \num{1.09e-01} \\
+  \end{tabular}
+\end{table}
+
+\begin{table}
+  \begin{tabular}{lll}
+  \hline
+  \textbf{2D Rastrigin} & Canonical PSO  & SPSO-2011 \\ \hline
+  Success Rate          & 100            & 100 \\
+  Avg. Fitness          & \num{6.12e-04} & \num{4.71e-05} \\
+  Avg. Func. Evals.     & \num{8.04e+03} & \num{2.68e+03} \\
+  Avg. Time             & \num{9.47e-02} & \num{1.65e-01} \\
+  \end{tabular}
+\end{table}
+
+\subsection{2D Functions}
+
+\begin{table}
+  \begin{tabular}{lll}
+  \hline
+  \textbf{30D Rosenbrock} & Canonical PSO  & SPSO-2011 \\ \hline
+  Success Rate            & 96             & 100 \\
+  Avg. Fitness            & \num{1.07e+02} & \num{5.18e-05} \\
+  Avg. Func. Evals.       & \num{1.80e+05} & \num{2.23e+03} \\
+  Avg. Time               & \num{2.16e+02} & \num{1.37e-01} \\
+  \end{tabular}
+\end{table}
+
+\begin{table}
+  \begin{tabular}{lll}
+  \hline
+  \textbf{30D Schwefel} & Canonical PSO   & SPSO-2011 \\ \hline
+  Success Rate          & 100             & 100 \\
+  Avg. Fitness          & \num{-3.54e+03} & \num{6.43e-03} \\
+  Avg. Func. Evals.     & \num{3.07e+02}  & \num{7.91e+03} \\
+  Avg. Time             & \num{3.04e-02}  & \num{9.63e-01} \\
+  \end{tabular}
+\end{table}
+
+\begin{table}
+  \begin{tabular}{lll}
+  \hline
+  \textbf{30D Sphere} & Canonical PSO  & SPSO-2011 \\ \hline
+  Success Rate        & 100            & 100 \\
+  Avg. Fitness        & \num{9.32e+03} & \num{9.06e-05} \\
+  Avg. Func. Evals.   & \num{1.20e+05} & \num{1.22e+04} \\
+  Avg. Time           & \num{7.69e+01} & \num{3.25e+00} \\
+  \end{tabular}
+\end{table}
+
+\begin{table}
+  \begin{tabular}{lll}
+  \hline
+  \textbf{30D Rastrigin} & Canonical PSO  & SPSO-2011 \\ \hline
+  Success Rate           & 100            & 100 \\
+  Avg. Fitness           & \num{9.85e+01} & \num{4.71e-05} \\
+  Avg. Func. Evals.      & \num{1.09e+05} & \num{2.68e+03} \\
+  Avg. Time              & \num{6.03e-01} & \num{1.65e-01} \\
   \end{tabular}
 \end{table}
 
@@ -403,6 +482,11 @@ SPSO-2011 are likely due to the reduced velocities exhibited by particles in the
 swarm.
 
 \section{Analysis}
+
+The Schwefel results for Canonical PSO are invalid. This is because the
+properties of the Schwefel function are such that better solutions exist outside
+the search-space. Since SPSO-2011 features velocity and positional clamping it
+behaves correctly and differently from Canonical PSO, which has no such feature.
 
 The null hypothesis 
 
