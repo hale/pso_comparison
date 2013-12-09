@@ -5,7 +5,7 @@ ID numbers for the respective Matlab implementations.
 
 ### Rosenbrock (6,30)
 
-* Error threshold (admissible error) = 1e-03
+* Error threshold (admissible error) = 1e-04
 
 |                                        | Canonical PSO | SPSO-2011 |
 | --                                     | :--:          | :--:      |
@@ -16,8 +16,7 @@ ID numbers for the respective Matlab implementations.
 
 ### Schwefel (8,12)
 
-* Error threshold (admissible error) = 1e-03
-
+* Error threshold (admissible error) = 1e-02
 |                                        | Canonical PSO | SPSO-2011 |
 | --                                     | :--:          | :--:      |
 | Success Rate                           | 100           | 100       |
@@ -32,7 +31,7 @@ behaves correctly and differently from Canonical PSO, which has no such feature.
 
 ### Sphere (9,26)
 
-* Error threshold (admissible error) = 1e-07
+* Error threshold (admissible error) = 1e-04
 |                                        | Canonical PSO | SPSO-2011 |
 | --                                     | :--:          | :--:      |
 | Success Rate                           | 100           | 100       |
@@ -44,7 +43,7 @@ behaves correctly and differently from Canonical PSO, which has no such feature.
 
 ### Rastrigin (5,27)
 
-* Error threshold (admissible error) = 1e-03
+* Error threshold (admissible error) = 1e-04
 |                                        | Canonical PSO | SPSO-2011 |
 | --                                     | :--:          | :--:      |
 | Success Rate                           | 100           | 100       |
@@ -56,7 +55,7 @@ behaves correctly and differently from Canonical PSO, which has no such feature.
 
 ### Rosenbrock (6,30)
 
-* Error threshold (admissible error) = 1e+02 (100)
+* Error threshold (admissible error) = 1e-04
 |                                        | Canonical PSO | SPSO-2011 |
 | --                                     | :--:          | :--:      |
 | Success Rate                           | 96 | |
@@ -66,7 +65,7 @@ behaves correctly and differently from Canonical PSO, which has no such feature.
 
 ### Schwefel (8,12)
 
-* Error threshold (admissible error) = 1e+02 (100)
+* Error threshold (admissible error) = 1e-02
 |                                        | Canonical PSO | SPSO-2011 |
 | --                                     | :--:          | :--:      |
 | Success Rate                           | 100 | |
@@ -81,7 +80,7 @@ behaves correctly and differently from Canonical PSO, which has no such feature.
 
 ### Sphere (9,26)
 
-* Error threshold (admissible error) = 1e+02 (100)
+* Error threshold (admissible error) = 1e-04
 |                                        | Canonical PSO | SPSO-2011 |
 | --                                     | :--:          | :--:      |
 | Success Rate                           | 100           | 100       |
@@ -91,7 +90,7 @@ behaves correctly and differently from Canonical PSO, which has no such feature.
 
 ### Rastrigin (5,27)
 
-* Error threshold (admissible error) = 1e+02 (100)
+* Error threshold (admissible error) = 1e-04
 |                                        | Canonical PSO | SPSO-2011 |
 | --                                     | :--:          | :--:      |
 | Success Rate                           | 100 | |

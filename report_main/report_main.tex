@@ -360,14 +360,21 @@ both algorithms.
 The maximum number of function evaluations is dependent on the number of
 dimensions, which is in keeping with the literature.
 
+\subsubsection{Stopping criteria}
+
+For Rastrigin, Sphere and Rosenbrock the success criteria is \num{1e-04}. For
+Schwefel, the success criteria is \num{1e-02}. This matches the competition
+requirements for CEC2013, and is the default configuration from the SPS0-2011
+MATLAB implementation.
+
 \begin{table}
   \begin{tabular}{lll}
   \hline
-  ~                            & Canonical PSO         & SPSO-2011 \\ \hline
+  ~                            & CanonicalPSO         & SPSO-2011 \\ \hline
   Swarm size                   & 30                    & 30 \\
   Particles per neighbourhood  & 13                    & $\approx$ 13 \\
   Number of runs               & 25                    & 25 \\
-  Maximum function evaluations & \multicolumn{2}{c}{\num{1e5} in 2D, \num{3e6} in 30D} \\
+  Maximum function evaluations & $D(\num{1e+05})$      & $D(\num{1e+05})$ \\
   Inertia                      & $0.9 \rightarrow 0.4$ & $\frac{1}{2\log{2}} \approx 0.7213$ \\
   Cognitive weight             & 1.49618               & $\frac{1}{2} + \log{2} \approx 0.3466$ \\
   Social weight                & 1.49618               & $\frac{1}{2} + \log{2} \approx 0.3466$ \\
@@ -376,110 +383,101 @@ dimensions, which is in keeping with the literature.
 
 \section{Results}
 
-Unless otherwise noted, average is the mean.
-
-\subsection{2D Functions}
-
-\begin{table}
+\begin{multicols}{2}
+\begin{center}
   \begin{tabular}{lll}
   \hline
-  \textbf{2D Rosenbrock} & Canonical PSO  & SPSO-2011 \\ \hline
+  \textbf{2DRosenbrock} & CanonicalPSO  & SPSO-2011 \\ \hline
   Success Rate           & 100            & 100 \\
-  Avg. Fitness           & \num{3.94e-04} & \num{5.18e-05} \\
-  Avg. Func. Evals.      & \num{1.30e+04} & \num{2.23e+03} \\
-  Avg. Time              & \num{1.50e-01} & \num{1.37e-01} \\
+  Fitness                & \num{5.38e-05} & \num{5.18e-05} \\
+  Func. Evals.           & \num{2.10e+04} & \num{2.23e+03} \\
+  Time                   & \num{2.43e-01} & \num{1.37e-01} \\
   \end{tabular}
-\end{table}
+\end{center}
 
-\begin{table}
+\begin{center}
   \begin{tabular}{lll}
   \hline
-  \textbf{2D Schwefel} & Canonical PSO   & SPSO-2011 \\ \hline
+  \textbf{30DRosenbrock} & CanonicalPSO & SPSO-2011 \\ \hline
+  Success Rate            & ~             & 0 \\
+  Fitness                 & ~             & \num{3.93e-03} \\
+  Func. Evals.            & ~             & \num{3.00e+06} \\
+  Time                    & ~             & \num{8.46e+02} \\
+  \end{tabular}
+\end{center}
+\end{multicols}
+
+\begin{multicols}{2}
+\begin{center}
+  \begin{tabular}{lll}
+  \hline
+  \textbf{2DSchwefel} & CanonicalPSO   & SPSO-2011 \\ \hline
   Success Rate         & 100             & 100 \\
-  Avg. Fitness         & \num{-3.93e+02} & \num{6.43e-03} \\
-  Avg. Func. Evals.    & \num{9.92e+01}  & \num{7.91e+03} \\
-  Avg. Time            & \num{2.10e-02}  & \num{9.63e-01} \\
+  Fitness              & \num{-3.93e+02} & \num{6.43e-03} \\
+  Func. Evals.         & \num{9.92e+01}  & \num{7.91e+03} \\
+  Time                 & \num{2.23e-02}  & \num{9.63e-01} \\
   \end{tabular}
-\end{table}
+\end{center}
 
-\begin{table}
+\begin{center}
   \begin{tabular}{lll}
   \hline
-  \textbf{2D Sphere} & Canonical PSO  & SPSO-2011 \\ \hline
-  Success Rate       & 100            & 100 \\
-  Avg. Fitness       & \num{4.46e-08} & \num{5.29e-05} \\
-  Avg. Func. Evals.  & \num{1.24e+04} & \num{1.83e+03} \\
-  Avg. Time          & \num{1.35e-01} & \num{1.09e-01} \\
-  \end{tabular}
-\end{table}
-
-\begin{table}
-  \begin{tabular}{lll}
-  \hline
-  \textbf{2D Rastrigin} & Canonical PSO  & SPSO-2011 \\ \hline
-  Success Rate          & 100            & 100 \\
-  Avg. Fitness          & \num{6.12e-04} & \num{4.71e-05} \\
-  Avg. Func. Evals.     & \num{8.04e+03} & \num{2.68e+03} \\
-  Avg. Time             & \num{9.47e-02} & \num{1.65e-01} \\
-  \end{tabular}
-\end{table}
-
-\subsection{2D Functions}
-
-\begin{table}
-  \begin{tabular}{lll}
-  \hline
-  \textbf{30D Rosenbrock} & Canonical PSO  & SPSO-2011 \\ \hline
-  Success Rate            & 96             & 100 \\
-  Avg. Fitness            & \num{1.07e+02} & \num{5.18e-05} \\
-  Avg. Func. Evals.       & \num{1.80e+05} & \num{2.23e+03} \\
-  Avg. Time               & \num{2.16e+02} & \num{1.37e-01} \\
-  \end{tabular}
-\end{table}
-
-\begin{table}
-  \begin{tabular}{lll}
-  \hline
-  \textbf{30D Schwefel} & Canonical PSO   & SPSO-2011 \\ \hline
+  \textbf{30DSchwefel} & CanonicalPSO   & SPSO-2011 \\ \hline
   Success Rate          & 100             & 100 \\
-  Avg. Fitness          & \num{-3.54e+03} & \num{6.43e-03} \\
-  Avg. Func. Evals.     & \num{3.07e+02}  & \num{7.91e+03} \\
-  Avg. Time             & \num{3.04e-02}  & \num{9.63e-01} \\
+  Fitness               & \num{-3.53e+03} & ~ \\
+  Func. Evals.          & \num{3.07e+02}  & ~ \\
+  Time                  & \num{2.99e-02}  & ~ \\
   \end{tabular}
-\end{table}
+\end{center}
+\end{multicols}
 
-\begin{table}
+\begin{multicols}{2}
+\begin{center}
   \begin{tabular}{lll}
   \hline
-  \textbf{30D Sphere} & Canonical PSO  & SPSO-2011 \\ \hline
-  Success Rate        & 100            & 100 \\
-  Avg. Fitness        & \num{9.32e+03} & \num{9.06e-05} \\
-  Avg. Func. Evals.   & \num{1.20e+05} & \num{1.22e+04} \\
-  Avg. Time           & \num{7.69e+01} & \num{3.25e+00} \\
+  \textbf{2DSphere} & CanonicalPSO  & SPSO-2011 \\ \hline
+  Success Rate       & 100            & 100 \\
+  Fitness            & \num{4.31e-05} & \num{5.29e-05} \\
+  Func. Evals.       & \num{1.00e+04} & \num{1.83e+03} \\
+  Time               & \num{1.11e-01} & \num{1.09e-01} \\
   \end{tabular}
-\end{table}
+\end{center}
 
-\begin{table}
+\begin{center}
   \begin{tabular}{lll}
   \hline
-  \textbf{30D Rastrigin} & Canonical PSO  & SPSO-2011 \\ \hline
-  Success Rate           & 100            & 100 \\
-  Avg. Fitness           & \num{9.85e+01} & \num{4.71e-05} \\
-  Avg. Func. Evals.      & \num{1.09e+05} & \num{2.68e+03} \\
-  Avg. Time              & \num{6.03e-01} & \num{1.65e-01} \\
+  \textbf{30DSphere} & CanonicalPSO & SPSO-2011 \\ \hline
+  Success Rate        & ~             & 100 \\
+  Fitness             & ~             & \num{9.06e-05} \\
+  Func. Evals.        & ~             & \num{1.22e+04} \\
+  Time                & ~             & \num{3.25e+00} \\
   \end{tabular}
-\end{table}
+\end{center}
+\end{multicols}
 
+\begin{multicols}{2}
+\begin{center}
+  \begin{tabular}{lll}
+  \hline
+  \textbf{2DRastrigin} & CanonicalPSO  & SPSO-2011 \\ \hline
+  Success Rate          & 100            & 100 \\
+  Fitness               & \num{5.78e-05} & \num{4.71e-05} \\
+  Func. Evals.          & \num{1.14e+04} & \num{2.68e+03} \\
+  Time                  & \num{1.26e-01} & \num{1.65e-01} \\
+  \end{tabular}
+\end{center}
 
-
-
-
-%Literally state the data - obvservations, no analysis.
-
-
-The increased running time and higher number of function evaluations for
-SPSO-2011 are likely due to the reduced velocities exhibited by particles in the
-swarm.
+\begin{center}
+  \begin{tabular}{lll}
+  \hline
+  \textbf{30DRastrigin} & CanonicalPSO & SPSO-2011 \\ \hline
+  Success Rate           & ~             & 0 \\
+  Fitness                & ~             & \num{3.89e+01} \\
+  Func. Evals.           & ~             & \num{3.00e+06} \\
+  Time                   & ~             & \num{8.71e+02} \\
+  \end{tabular}
+\end{center}
+\end{multicols}
 
 \section{Analysis}
 
