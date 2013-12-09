@@ -196,7 +196,7 @@ hypersphere.
   \rarrow{V}_i^{t+1} = \omega \rarrow{V}_i^t + H_i(\rarrow{G}_i^t,||\rarrow{G}_i^t - \rarrow{X}_i^t||) - \rarrow{X}_i^t
 \end{equation}
 
-\subsubsection{Initialisation of the swarm}
+\subsubsection{Initialisation Procedure}
 
 Like Canonical PSO, the initial position of particles is randomised within the
 search space. The velocity initialization is modified in order to address a
@@ -213,7 +213,7 @@ search-space into a hypercube. This is in order to gain maximum benefit from the
 new velocity update equation, which makes use of
 hyperspheres~\cite{Clerc:2012to}.
 
-\subsubsection{Neighbourhoods}
+\subsubsection{Neighbourhood Topology}
 
 Like Canonical PSO, SPSO-2011 also supports neighbourhoods. However whereas
 Canonical PSO groups neighbours in a ring topology~(Figure~2), SPSO-2011
@@ -263,23 +263,6 @@ the search space acts as an absorbing wall, modifying the position of the
 particle to coincide with the reached boundary and resetting the particle's
 velocity to zero.''~\cite{ZambranoBigiarini:2013dl}.
 
-\subsection{Commonalities between both PSO variations under test}
-
-Some parameters have been kept the same between the variations under test, for
-two reasons. Firstly, because the parameter values do not represent a
-fundamental advancement of the algorithm, and so it makes sense to set them to
-best known values. Secondly, to ensure that the comparison is accurate and does
-not unfairly bias one approach due to parameter choice rather than a genuine
-development of the algorithm.
-
-\subsubsection{Swarm size}
-
-It is not currently known how to pick the optimal number of particles (Trelea
-2003), so a medium value of 40 has been chosen. Increasing the swarm size
-increases the success rate at the expense of function evaluations. Since our
-stopping criteria in this simulation is a set number of function evaluations,
-it is important that the swarm size remains constant for both algorithms.
-
 \section{Research Question}
 
 SPSO is not meant to be outperform every flavour of PSO either generally or on a
@@ -303,16 +286,31 @@ In order to overcome potential bias, the functions have been shifted such that
 the particles are not initialized around the global
 minimum~\cite{Monson:2005fn}.
 
+Four objective functions widely used in optimizatin literature have been tested
+against, the results of which appear below. Experiments have been carried out
+first in 2 and then 30 dimensions.
+
+A Sphere is the simplest of optimization targets, since there are no local
+minimum `traps' that can result in premature convergence. The Rosenbrock
+function is a widely test function in optimization. PSO was first tested against
+it in~\cite{Shi:1999je} using an algorithm somewhat similar to the Canonical PSO
+described here. Schwefel's function is useful in optimization testing because of
+the large geometric distance between the global minimum and other local minima.
+This can lead to optimization algorithms being mislead in the `wrong direction'.
+Finally, the Rastrigin function has been chosen due to its popularity in the
+literature. It features a large number of local minimum clustered around the
+global minimum.
+
 Plots of the functions are 2-dimensional, with the z-axis representing the
 function evaluation or fitness value for the given (x,y) positional coordinate.
 
-Experiments have been carried out first in 2 and then 30 dimensions.
-
-The Rosenbrock function is a widely test function in optimization. PSO was first
-tested against it in~\cite{Shi:1999je}, with an algorithm somewhat similar to
-the Canonical PSO described here.
-
 \begin{multicols}{2}
+
+\begin{Figure}
+  \centering
+  \includegraphics[width=\linewidth]{../functions/sphere_shifted.eps}
+  \captionof{figure}{Sphere Function}
+\end{Figure}
 
 \begin{Figure}
   \centering
@@ -324,12 +322,6 @@ the Canonical PSO described here.
   \centering
   \includegraphics[width=\linewidth]{../functions/schwefel.eps}
   \captionof{figure}{Schwefel Function}
-\end{Figure}
-
-\begin{Figure}
-  \centering
-  \includegraphics[width=\linewidth]{../functions/sphere_shifted.eps}
-  \captionof{figure}{Sphere Function}
 \end{Figure}
 
 \begin{Figure}
@@ -348,13 +340,25 @@ In addition to and as a result of the differences in approach outlined above,
 SPSO-2011 and Canonical PSO have different parameters.  This section lists the
 setup for each PSO variation.
 
-Four objective functions widely used in optimizatin literature have been tested
-against, the results of which appear below. Two sets of results are presented,
-against functions in 2 and 30 dimensions.
+Some parameters have been kept the same between the variations under test, for
+two reasons. Firstly because some parameter values do not represent a
+fundamental advancement of the algorithm, and so it makes sense to set them to
+best known values. An example of this would be swarm size, since despite much
+experimentation there is still no consensus on the best choice; varying the
+swarm size would not reflect a development of PSO research. Secondly, to
+minimise the number of variables thus providing a more valid comparison.
+
+\subsubsection{Swarm size}
+
+It is not currently known how to pick the optimal number of
+particles~\cite{Trelea:2003dv}, so a medium value of 40 has been chosen.
+Increasing the swarm size increases the success rate at the expense of function
+evaluations. Since our stopping criteria in this simulation is a set number of
+function evaluations, it is important that the swarm size remains constant for
+both algorithms.
 
 The maximum number of function evaluations is dependent on the number of
-dimensions. This is in keeping with other PSO testing and allows for better
-comparisons.
+dimensions, which is in keeping with the literature.
 
 \begin{table}
   \begin{tabular}{lll}
