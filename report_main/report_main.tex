@@ -3,17 +3,31 @@
 \author{Philip Hale}
 \title{A comparison of developments in PSO from 1995 to 2013}
 
+%%%%%%%%%%%%%%
+%% PACKAGES %%
+%%%%%%%%%%%%%%
+
 \usepackage[utf8]{inputenc} % allows UTF-8 in references
-\usepackage{natbib} % support for alpha style
-\usepackage{amsmath} % better rendering of formulae
-\usepackage{graphicx} % graphics support
-\usepackage{epstopdf} % eps support
-\usepackage{siunitx} % easier to use and read standard form. E.g. \num{3e-2}
+\usepackage{natbib}         % support for alpha style
+\usepackage{amsmath}        % better rendering of formulae
+\usepackage{graphicx}       % graphics support
+\usepackage{epstopdf}       % eps support
+
+% easier to use and read standard form. E.g. \num{3e-2}
+\usepackage{siunitx}
 \sisetup{tight-spacing=true}
 
 % multi figures on one line
 \usepackage{caption}
 \usepackage{subcaption}
+
+\usepackage{pgfplots}
+\pgfplotsset{width=\textwidth,compat=1.8}
+\usepgfplotslibrary{statistics}
+
+%%%%%%%%%%%%%%
+%% SETTINGS %%
+%%%%%%%%%%%%%%
 
 % Sort-of chicago-style (humanities) inline references.
 \bibliographystyle{alpha}
@@ -423,6 +437,200 @@ configuration from the SPS0-2011 MATLAB implementation.
 \caption{Fitness Scores}
 \label{tab:fitness_scores}
 \end{table}
+
+
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.4\textwidth}
+    \begin{tikzpicture}%[scale=0.5]
+      \begin{axis}
+      [
+        ytick={1,2},
+        yticklabels={CPSO, SPSO11},
+        ]
+        \addplot+[
+        boxplot prepared={
+          lower whisker=1.53e-7,
+          lower quartile=1.89e-5,
+          median=3.77e-5,
+          upper quartile=6.9e-5,
+          upper whisker=9.11e-5
+        },
+        ] coordinates {};
+        \addplot+[
+        boxplot prepared={
+          median=2,
+          upper quartile=2.3,
+          lower quartile=1.5,
+          upper whisker=2.7,
+          lower whisker=1
+        },
+        ] coordinates {};
+      \end{axis}
+    \end{tikzpicture}
+    \caption{2D}
+  \end{subfigure}
+  ~
+  \begin{subfigure}[b]{0.4\textwidth}
+    \begin{tikzpicture}%[scale=0.5]
+      \begin{axis}
+      [
+        ytick={1,2},
+        yticklabels={CPSO, SPSO11},
+        ]
+        \addplot+[
+        boxplot prepared={
+          median=1,
+          upper quartile=1.2,
+          lower quartile=0.4,
+          upper whisker=1.5,
+          lower whisker=0.2
+        },
+        ] coordinates {};
+        \addplot+[
+        boxplot prepared={
+          median=2,
+          upper quartile=2.3,
+          lower quartile=1.5,
+          upper whisker=2.7,
+          lower whisker=1
+        },
+        ] coordinates {};
+      \end{axis}
+    \end{tikzpicture}
+    \caption{20D}
+  \end{subfigure}
+  \caption{Sphere Function Fitness}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.4\textwidth}
+    \begin{tikzpicture}%[scale=0.5]
+      \begin{axis}
+      [
+        ytick={1,2},
+        yticklabels={CPSO, SPSO11},
+        ]
+        \addplot+[
+        boxplot prepared={
+          median=1,
+          upper quartile=1.2,
+          lower quartile=0.4,
+          upper whisker=1.5,
+          lower whisker=0.2
+        },
+        ] coordinates {};
+        \addplot+[
+        boxplot prepared={
+          median=2,
+          upper quartile=2.3,
+          lower quartile=1.5,
+          upper whisker=2.7,
+          lower whisker=1
+        },
+        ] coordinates {};
+      \end{axis}
+    \end{tikzpicture}
+    \caption{2D}
+  \end{subfigure}
+  ~
+  \begin{subfigure}[b]{0.4\textwidth}
+    \begin{tikzpicture}%[scale=0.5]
+      \begin{axis}
+      [
+        ytick={1,2},
+        yticklabels={CPSO, SPSO11},
+        ]
+        \addplot+[
+        boxplot prepared={
+          median=1,
+          upper quartile=1.2,
+          lower quartile=0.4,
+          upper whisker=1.5,
+          lower whisker=0.2
+        },
+        ] coordinates {};
+        \addplot+[
+        boxplot prepared={
+          median=2,
+          upper quartile=2.3,
+          lower quartile=1.5,
+          upper whisker=2.7,
+          lower whisker=1
+        },
+        ] coordinates {};
+      \end{axis}
+    \end{tikzpicture}
+    \caption{20D}
+  \end{subfigure}
+  \caption{Rosebrock Function Fitness}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.4\textwidth}
+    \begin{tikzpicture}%[scale=0.5]
+      \begin{axis}
+      [
+        ytick={1,2},
+        yticklabels={CPSO, SPSO11},
+        ]
+        \addplot+[
+        boxplot prepared={
+          median=1,
+          upper quartile=1.2,
+          lower quartile=0.4,
+          upper whisker=1.5,
+          lower whisker=0.2
+        },
+        ] coordinates {};
+        \addplot+[
+        boxplot prepared={
+          median=2,
+          upper quartile=2.3,
+          lower quartile=1.5,
+          upper whisker=2.7,
+          lower whisker=1
+        },
+        ] coordinates {};
+      \end{axis}
+    \end{tikzpicture}
+    \caption{2D}
+  \end{subfigure}
+  ~
+  \begin{subfigure}[b]{0.4\textwidth}
+    \begin{tikzpicture}%[scale=0.5]
+      \begin{axis}
+      [
+        ytick={1,2},
+        yticklabels={CPSO, SPSO11},
+        ]
+        \addplot+[
+        boxplot prepared={
+          median=1,
+          upper quartile=1.2,
+          lower quartile=0.4,
+          upper whisker=1.5,
+          lower whisker=0.2
+        },
+        ] coordinates {};
+        \addplot+[
+        boxplot prepared={
+          median=2,
+          upper quartile=2.3,
+          lower quartile=1.5,
+          upper whisker=2.7,
+          lower whisker=1
+        },
+        ] coordinates {};
+      \end{axis}
+    \end{tikzpicture}
+    \caption{20D}
+  \end{subfigure}
+  \caption{Rastrigin Function Fitness}
+\end{figure}
 
 \section{Analysis}
 
