@@ -71,19 +71,17 @@ provide a benchmark that mean  ``if your brand new algorithm does not
 significantly `beat' SPSO (on a difficult enough non-biased benchmark) you have
 to improve it''~\cite{Clerc:2012to}.
 
-This paper is split into several parts. The first section defines PSO in its
-most fundamental form, as first proposed in~\cite{Kennedy:1995bi}. Next, two
-variations of PSO are introduced, which form the basis of the rest of this
-study. Specifying these variations also provides a means to catalogue a
-chronology of PSO developments, with special attention given to the discoveries
-that have made their way into today's standards. The subsequent sections consist
-of outlining some speculative hypotheses and an experimental setup to test these
-claims empirically. Finally the results of this experiment are analysed, and
-some pointers are given to current trends in PSO research.
+%This paper is split into several parts. The first section defines PSO in its
+%most fundamental form, as first proposed in~\cite{Kennedy:1995bi}. Next, two
+%variations of PSO are introduced, which form the basis of the rest of this
+%study. Specifying these variations also provides a means to catalogue a
+%chronology of PSO developments, with special attention given to the discoveries
+%that have made their way into today's standards. The subsequent sections consist
+%of outlining some speculative hypotheses and an experimental setup to test these
+%claims empirically. Finally the results of this experiment are analysed, and
+%some pointers are given to current trends in PSO research.
 
 \section{Particle Swarm Optimization: Background}
-
-\subsection{Original PSO}
 
 PSO consists of a population of particles, where each particle represents a
 candidate solution to the objective function.  The number of particles is
@@ -124,6 +122,45 @@ also known as entrywise product, of the two matrices.
 Variations of the PSO algorithm consist of changes in the initialization of the
 swarm, modifications to the velocity and positional update functions. These
 are explained in detail below in defining the two algorithms under test.
+
+\section{Research Question}
+
+The question we are asking is: to what extent has PSO imrpoved in the past 10
+years?
+
+SPSO is not meant to be outperform every flavour of PSO either generally or on a
+subset of optimization targets~\cite{Bratton:2007hq}. More performant PSO
+implementations exist, but the improvements are either still under scrutiny or
+limited to certain classes of functions.
+
+Comparing the contemporary baseline-performance of PSO with early PSO allows us
+to assess how far the field has come, and to what extent some of PSO's earlier
+limitations are still relevant.
+
+The following null hypotheses will be tested for both the two-dimensional and
+twenty-dimensional case.
+
+\begin{enumerate}
+  \item{There is no difference in convergence speed between an original PSO
+      and a contemporary PSO.}
+  \item{A contemporary PSO cannot converge closer to the global minimum
+      than an original PSO in a given number of function evaluations.}
+\end{enumerate}
+
+These hypotheses are predicted outcomes of the experiments:
+
+\begin{enumerate}
+  \item{A contemporary PSO can converge closer to the
+      global minimum than an original PSO in a given number of function evaluations.}
+  \item{A contemporary PSO can converge more quickly to the global minimum than an
+      original PSO.}
+\end{enumerate}
+
+\section{Experimental Design}
+
+In order to test the hypotheses, two PSO implementations were selected. One to
+model an early PSO variant, and another to model the current gold-standard of
+PSO research.
 
 \subsection{Canonical PSO}
 
@@ -169,7 +206,7 @@ position value~\cite{Suganthan:1999iv}. Instead of a globally-known best
 solution, each neighbourhood has its own local-best position. Earlier versions
 of PSO were characterised by using this $lbest$ variation, and so it has been
 chosen for the comparison. The paper that first proposed $lbest$ PSO used
-Eculidian distance to determine neighbourhood groupings.  Canonical PSO uses the
+Euclidian distance to determine neighbourhood groupings.  Canonical PSO uses the
 more popular and computationally cheaper ring topology, which creates
 neighbourhoods based on the array index of the particle swarm
 (figure~\ref{fig:ring_topology}).
@@ -275,26 +312,14 @@ in~\cite{ZambranoBigiarini:2013dl}.
 
 \subsubsection{Confinement} % aka velocity clamping
 
+velocity and positional clamping.
+
 ``When a particle `flies' outside the $[min_d ,max_d]$ range, each boundary of
 the search space acts as an absorbing wall, modifying the position of the
 particle to coincide with the reached boundary and resetting the particle's
 velocity to zero.''~\cite{ZambranoBigiarini:2013dl}.
-
-\section{Research Question}
-
-SPSO is not meant to be outperform every flavour of PSO either generally or on a
-subset of optimization targets~\cite{Bratton:2007hq}. More performant PSO
-implementations exist, but the improvements are either still under scrutiny or
-limited to certain classes of functions.
-
-Comparing the contemporary baseline-performance of PSO with an implementation
-that resembles PSO from the late nineties allows us to assess how far the field
-has come, and to what extent some of PSO's earlier limitations are still
-relevant.
-
-
-
 \section{Experimental Design}
+
 
 
 \subsection{Functions}
@@ -303,13 +328,13 @@ In order to overcome potential bias, the functions have been shifted such that
 the particles are not initialized around the global
 minimum~\cite{Monson:2005fn}.
 
-Three objective functions widely used in optimizatin literature have been tested
+Three objective functions widely used in optimization literature have been tested
 against, the results of which appear below. Experiments have been carried out
 first in 2 and then 20 dimensions.
 
-A Sphere is the simplest of optimization targets, since there are no local
+A Sphere is the simplest of the chosen optimization targets, since there are no local
 minimum `traps' that can result in premature convergence. The Rosenbrock
-function is a widely test function in optimization. PSO was first tested against
+function is a widely used test function in optimization. PSO was first tested against
 it in~\cite{Shi:1999je} using an algorithm somewhat similar to the Canonical PSO
 described here.  Finally, the Rastrigin function has been chosen due to its
 popularity in the literature. It features a large number of local minimum
@@ -632,38 +657,11 @@ configuration from the SPS0-2011 MATLAB implementation.
   \caption{Rastrigin Function Fitness}
 \end{figure}
 
-%\begin{figure}
-  %\begin{tikzpicture}%[scale=0.5]
-      %\begin{loglogaxis}
-      %[
-        %ytick={1,2},
-        %yticklabels={CPSO, SPSO11},
-        %]
-        %\addplot+[
-        %boxplot prepared={
-          %lower whisker=9.97e-6,
-          %lower quartile=1.00e-4,
-          %median=2.55e-2,
-          %upper quartile=3.99e+0,
-          %upper whisker=1.62e+1
-        %},
-        %] coordinates {};
-        %\addplot+[
-        %boxplot prepared={
-          %lower whisker=9.99e-5,
-          %lower quartile=9.99e-5,
-          %median=1.00e-4,
-          %upper quartile=1.00e-4,
-          %upper whisker=3.99e+0
-        %},
-        %] coordinates {};
-      %\end{loglogaxis}
-    %\end{tikzpicture}
-  %\caption{Rosenbrock Function Fitness}
-%\end{figure}
-%\section{Analysis}
+% STATE THE OBVIOUS; STATEMENTS ON RESULTS
 
-The null hypothesis 
+
+
+\section{Experimental Analysis}
 
 %Provide explanations for the observations above.
 
