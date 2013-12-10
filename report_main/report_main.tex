@@ -397,27 +397,28 @@ configuration from the SPS0-2011 MATLAB implementation.
   Rastrigin 20D (Canonical PSO)  & \num{2.00e+06}    & \num{1.62e+01} & 0      \\
   Rastrigin 20D (SPSO-2011)      & \num{2.00e+06}    & \num{3.92e+02} & 0      \\
 \end{tabular}
-\caption{Additional experimental data}
+\caption{Summary}
 \label{tab:additional_data}
 \end{table}
 
 \begin{table}
+\footnotesize
 \centering
-\begin{tabular}{lllll}
+\begin{tabular}{lllllll}
   \hline
-                                 & Min            & Median         & Max            & Std. Dev.      \\ \hline
-  Sphere 2D (Canonical PSO)      & \num{1.53e-07} & \num{3.77e-05} & \num{9.11e-05} & \num{2.99e-05} \\
-  Sphere 2D (SPSO-2011)          & \num{4.86e-06} & \num{4.69e-05} & \num{9.84e-05} & \num{2.64e-05} \\ \hline
-  Rosenbrock 2D (Canonical PSO)  & \num{5.80e-06} & \num{5.90e-05} & \num{9.53e-05} & \num{2.86e-05} \\
-  Rosenbrock 2D (SPSO-2011)      & \num{2.46e-06} & \num{5.45e-05} & \num{9.64e-05} & \num{3.41e-05} \\ \hline
-  Rastrigin 2D (Canonical PSO)   & \num{2.48e-07} & \num{5.87e-05} & \num{9.89e-05} & \num{3.18e-05} \\
-  Rastrigin 2D (SPSO-2011)       & \num{7.57e-06} & \num{6.31e-05} & \num{9.97e-05} & \num{2.94e-05} \\ \hline
-  Sphere 20D (Canonical PSO)     & \num{7.29e-05} & \num{9.41e-05} & \num{9.99e-05} & \num{7.32e-06} \\
-  Sphere 20D (SPSO-2011)         & \num{7.26e-05} & \num{9.19e-05} & \num{9.95e-05} & \num{5.84e-06} \\ \hline
-  Rosenbrock 20D (Canonical PSO) & \num{9.97e-06} & \num{2.55e-02} & \num{1.62e+01} & \num{3.50e+00} \\
-  Rosenbrock 20D (SPSO-2011)     & \num{9.99e-05} & \num{6.38e-01} & \num{3.99e+00} & \num{1.49e+00} \\ \hline
-  Rastrigin 20D (Canonical PSO)  & \num{9.95e-01} & \num{8.95e+00} & \num{1.99e+01} & \num{5.09e+00} \\
-  Rastrigin 20D (SPSO-2011)      & \num{1.19e+01} & \num{2.94e+01} & \num{1.02e+02} & \num{2.50e+01} \\
+                          & Min            & Q1             & Median         & Q3             & Max            & Std. Dev.      \\ \hline
+  Sphere 2D (CPSO)        & \num{1.53e-07} & \num{1.89e-05} & \num{3.77e-05} & \num{6.90e-05} & \num{9.11e-05} & \num{2.99e-05} \\
+  Sphere 2D (SPSO11)      & \num{4.86e-06} & \num{2.54e-05} & \num{4.79e-05} & \num{7.29e-05} & \num{9.84e-05} & \num{2.64e-05} \\ \hline
+  Rosenbrock 2D (CPSO)    & \num{5.80e-06} & \num{3.88e-05} & \num{5.90e-05} & \num{8.57e-05} & \num{9.53e-05} & \num{2.86e-05} \\
+  Rosenbrock 2D (SPSO11)  & \num{2.46e-06} & \num{1.94e-05} & \num{5.45e-05} & \num{8.68e-05} & \num{9.64e-05} & \num{3.41e-05} \\ \hline
+  Rastrigin 2D (CPSO)     & \num{2.48e-07} & \num{2.49e-05} & \num{5.87e-05} & \num{8.68e-05} & \num{9.89e-05} & \num{3.18e-05} \\
+  Rastrigin 2D (SPSO11)   & \num{7.57e-06} & \num{4.33e-05} & \num{6.31e-05} & \num{8.59e-05} & \num{9.97e-05} & \num{2.94e-05} \\ \hline
+  Sphere 20D (CPSO)       & \num{7.29e-05} & \num{8.72e-05} & \num{9.41e-05} & \num{9.82e-05} & \num{9.99e-05} & \num{7.32e-06} \\
+  Sphere 20D (SPSO11)     & \num{7.26e-05} & \num{8.88e-05} & \num{9.19e-05} & \num{9.56e-05} & \num{9.95e-05} & \num{5.84e-06} \\ \hline
+  Rosenbrock 20D (CPSO)   & \num{9.97e-06} & \num{1.00e-04} & \num{2.55e-02} & \num{3.99e+00} & \num{1.62e+01} & \num{3.50e+00} \\
+  Rosenbrock 20D (SPSO11) & \num{9.99e-05} & \num{9.99e-05} & \num{1.00e-04} & \num{1.00e-04} & \num{3.99e+00} & \num{1.49e+00} \\ \hline
+  Rastrigin 20D (CPSO)    & \num{9.95e-01} & \num{6.72e+00} & \num{8.95e+00} & \num{1.49e+01} & \num{1.99e+01} & \num{5.09e+00} \\
+  Rastrigin 20D (SPSO11)  & \num{1.19e+01} & \num{1.74e+01} & \num{2.01e+01} & \num{2.61e+01} & \num{1.02e+02} & \num{2.50e+01} \\
 \end{tabular}
 \caption{Fitness Scores}
 \label{tab:fitness_scores}
