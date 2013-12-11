@@ -1,0 +1,191 @@
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.4\textwidth}
+    \begin{tikzpicture}%[scale=0.5]
+      \begin{axis}
+      [
+        ytick={1,2},
+        yticklabels={CPSO, SPSO11},
+        ]
+        \addplot+[
+        boxplot prepared={
+          lower whisker=1.53e-7,
+          lower quartile=1.89e-5,
+          median=3.77e-5,
+          upper quartile=6.9e-5,
+          upper whisker=9.11e-5
+        },
+        ] coordinates {};
+        \addplot+[
+        boxplot prepared={
+          lower whisker=4.86e-6,
+          lower quartile=2.54e-5,
+          median=4.79e-5,
+          upper quartile=7.29e-5,
+          upper whisker=9.84e-5
+        },
+        ] coordinates {};
+      \end{axis}
+    \end{tikzpicture}
+    \caption{2D}
+  \end{subfigure}
+  ~
+  \begin{subfigure}[b]{0.4\textwidth}
+    \begin{tikzpicture}%[scale=0.5]
+      \begin{axis}
+      [
+        ytick={1,2},
+        yticklabels={CPSO, SPSO11},
+        ]
+        \addplot+[
+        boxplot prepared={
+          lower whisker=7.29e-5,
+          lower quartile=8.72e-5,
+          median=9.41e-5,
+          upper quartile=9.82e-5,
+          upper whisker=9.99e-5
+        },
+        ] coordinates {};
+        \addplot+[
+        boxplot prepared={
+          lower whisker=7.26e-5,
+          lower quartile=8.88e-5,
+          median=9.19e-5,
+          upper quartile=9.56e-5,
+          upper whisker=9.95e-5
+        },
+        ] coordinates {};
+      \end{axis}
+    \end{tikzpicture}
+    \caption{20D}
+  \end{subfigure}
+  \caption{Sphere Function Fitness}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.4\textwidth}
+    \begin{tikzpicture}%[scale=0.5]
+      \begin{axis}
+      [
+        ytick={1,2},
+        yticklabels={CPSO, SPSO11},
+        ]
+        \addplot+[
+        boxplot prepared={
+          lower whisker=5.80e-6,
+          lower quartile=3.88e-5,
+          median=5.90e-5,
+          upper quartile=8.57e-5,
+          upper whisker=9.53e-5
+        },
+        ] coordinates {};
+        \addplot+[
+        boxplot prepared={
+          lower whisker=2.46e-6,
+          lower quartile=1.94e-5,
+          median=5.45e-5,
+          upper quartile=8.68e-5,
+          upper whisker=9.64e-5
+        },
+        ] coordinates {};
+      \end{axis}
+    \end{tikzpicture}
+    \caption{2D}
+  \end{subfigure}
+  ~
+  \begin{subfigure}[b]{0.4\textwidth}
+    \begin{tikzpicture}%[scale=0.5]
+      \begin{loglogaxis}
+      [
+        ytick={1,2},
+        yticklabels={CPSO, SPSO11},
+        ]
+        \addplot+[
+        boxplot prepared={
+          lower whisker=9.97e-6,
+          lower quartile=1.00e-4,
+          median=2.55e-2,
+          upper quartile=3.99e+0,
+          upper whisker=1.62e+1
+        },
+        ] coordinates {};
+        \addplot+[
+        boxplot prepared={
+          lower whisker=9.99e-5,
+          lower quartile=9.99e-5,
+          median=1.00e-4,
+          upper quartile=1.00e-4,
+          upper whisker=3.99e+0
+        },
+        ] coordinates {};
+      \end{loglogaxis}
+    \end{tikzpicture}
+    \caption{20D}
+  \end{subfigure}
+  \caption{Rosenbrock Function Fitness}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.4\textwidth}
+    \begin{tikzpicture}%[scale=0.5]
+      \begin{axis}
+      [
+        ytick={1,2},
+        yticklabels={CPSO, SPSO11},
+        ]
+        \addplot+[
+        boxplot prepared={
+          lower whisker=2.48e-7,
+          lower quartile=2.49e-5,
+          median=5.87e-5,
+          upper quartile=8.68e-5,
+          upper whisker=9.89e-5
+        },
+        ] coordinates {};
+        \addplot+[
+        boxplot prepared={
+          lower whisker=7.57e-6,
+          lower quartile=4.33e-5,
+          median=6.31e-5,
+          upper quartile=8.59e-5,
+          upper whisker=9.97e-5
+        },
+        ] coordinates {};
+      \end{axis}
+    \end{tikzpicture}
+    \caption{2D}
+  \end{subfigure}
+  ~
+  \begin{subfigure}[b]{0.4\textwidth}
+    \begin{tikzpicture}%[scale=0.5]
+      \begin{axis}
+      [
+        ytick={1,2},
+        yticklabels={CPSO, SPSO11},
+        ]
+        \addplot+[
+        boxplot prepared={
+          lower whisker=9.95e-1,
+          lower quartile=6.72e-0,
+          median=8.95e-0,
+          upper quartile=1.49e+1,
+          upper whisker=1.99e+1
+        },
+        ] coordinates {};
+        \addplot+[
+        boxplot prepared={
+          lower whisker=1.19e+1,
+          lower quartile=1.74e+1,
+          median=2.01e+1,
+          upper quartile=2.61e+1,
+          upper whisker=1.02e+2
+        },
+        ] coordinates {};
+      \end{axis}
+    \end{tikzpicture}
+    \caption{20D}
+  \end{subfigure}
+  \caption{Rastrigin Function Fitness}
+\end{figure}
