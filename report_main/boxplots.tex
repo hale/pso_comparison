@@ -60,6 +60,7 @@
     \caption{20D}
   \end{subfigure}
   \caption{Sphere Function Fitness}
+  \label{fig:sphere_fitness}
 \end{figure}
 
 \begin{figure}
@@ -96,7 +97,7 @@
   ~
   \begin{subfigure}[b]{0.4\textwidth}
     \begin{tikzpicture}%[scale=0.5]
-      \begin{loglogaxis}
+      \begin{semilogxaxis}
       [
         ytick={1,2},
         yticklabels={CPSO, SPSO11},
@@ -119,11 +120,13 @@
           upper whisker=3.99e+0
         },
         ] coordinates {};
-      \end{loglogaxis}
+      \end{semilogxaxis}
     \end{tikzpicture}
+    \\
     \caption{20D}
   \end{subfigure}
   \caption{Rosenbrock Function Fitness}
+  \label{fig:rosenbrock_fitness}
 \end{figure}
 
 \begin{figure}
@@ -185,7 +188,9 @@
         ] coordinates {};
       \end{axis}
     \end{tikzpicture}
+    \\
     \caption{20D}
   \end{subfigure}
   \caption{Rastrigin Function Fitness}
+  \label{fig:rastrigin_fitness}
 \end{figure}

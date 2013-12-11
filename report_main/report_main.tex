@@ -45,16 +45,14 @@
 
 \section{Abstract}
 
-This paper compares the gold-standard of Particle Swarm Optimization with a
-canonical PSO implementation that is similar to original designs from 1995.
-The success of each algorithm is determined by its ability to optimize 3
-functions. We begin by introducing PSO and the two algorithms under test and
-conclude by evaluating the extent to which historical limitations of PSO have
-been addressed by the current standard.
+This paper compares the gold-standard of Particle Swarm Optimization with an
+original PSO implementation that is similar to designs proposed in the late
+nineties.  The success of each algorithm is determined by its ability to
+optimize six functions. We begin by introducing PSO and the two algorithms under
+test and conclude by evaluating the extent to which historical limitations of
+PSO have been addressed by the current standard.
 
 \section{Introduction}
-
-% TODO: update this section.
 
 This paper is split into several parts. The first section defines PSO in its
 most fundamental form, as first proposed in~\cite{Kennedy:1995bi}. Next, a
@@ -64,7 +62,7 @@ context, to create a comparison point between `then' and `now'. An experiment
 is devised where these two PSO variants are tested against optimization
 functions with the aim of evaluating their comparative performance. After the
 resulting data is presented, the results of this experiment are analysed with
-respect to out original question. Finally, some pointers are given to current
+respect to our original question. Finally, some pointers are given to current
 trends in PSO research.
 
 \section{Background}
@@ -143,20 +141,18 @@ implementations exist, but the improvements are either still under scrutiny or
 limited to certain classes of functions. Comparing the contemporary
 baseline-performance of PSO with early PSO allows us to assess how far the
 field has come, and to what extent some of PSO's earlier limitations are still
-relevant.
+present.
 
 Therefore, in order to evaluate the progress in PSO development we compare
 SPSO2011 to a basic, canonical PSO that approximates the state of PSO in the
-early naughties.
-
-The following null hypotheses will be tested for both the two-dimensional and
-twenty-dimensional case.
+early naughties. The following null hypotheses will be tested for both the
+two-dimensional and twenty-dimensional cases.
 
 \begin{enumerate}
   \item{There is no difference in convergence speed between an original PSO
       and a contemporary PSO.}
   \item{A contemporary PSO cannot converge closer to the global minimum
-      than an original PSO in a limited number of function evaluations.}
+      than an original PSO.}
 \end{enumerate}
 
 \section{Algorithm Specifications}
@@ -242,7 +238,7 @@ Like Canonical PSO, the initial position of particles is randomised within the
 search space. The velocity initialization is modified in order to address a
 problem where randomised initial velocities would cause particles to exit the
 search space~\cite{Helwig:2008bl}.The new initialization procedure for velocity
-prevents this form happening, and is calculated like so:
+prevents this from happening, and is calculated like so:
 
 \begin{equation}
   V_i^0 = U(D_{min} - X_i^d, D_{max} - X_i^d)
@@ -257,8 +253,8 @@ hyperspheres~\cite{Clerc:2012to}.
 
 Like Canonical PSO, SPSO-2011 also supports neighbourhoods. However whereas
 Canonical PSO groups neighbours in a ring
-topology~(figure~\ref{fig:ring_topology}), SPSO-2011 implements adaptive-random
-topology~(figure~\ref{fig:adaptive_random_topology}). This introduces
+topology~(Figure~\ref{fig:ring_topology}), SPSO-2011 implements adaptive-random
+topology~(Figure~\ref{fig:adaptive_random_topology}). This introduces
 variability into the neighbourhoods, whereby the neighbourhood changes each
 time the local-best score stays the same.
 
@@ -277,7 +273,7 @@ have minimums on the axis of the search space are much easier to optimize. The
 technique to address this requires using rotational invariance to perform the
 calculation based on a point slightly skewed from the known positions. The
 effect of this operation is a more uniform distribution of all next possible
-positions, $DNPP$. See figure~\ref{fig:dnpp} for a graphical depiction of this
+positions, $DNPP$. See Figure~\ref{fig:dnpp} for a graphical depiction of this
 change in behaviour.  The process and its effects are explained more thoroughly
 in~\cite{ZambranoBigiarini:2013dl}.
 
@@ -322,8 +318,8 @@ velocity to zero.''~\cite{ZambranoBigiarini:2013dl}.
 The research question can be answered with empirical data gathered from running
 implementations of PSO algorithms and comparing their performance.
 
-Since Canonical PSO defined above is somewhat unique, it was clear that the
-implementation chosen should allow for a large amount of customizability and
+Since Canonical PSO defined above lacks formal specification, it was clear that
+the implementation chosen should allow for a large amount of customizability and
 ease-of-use.  The MATLAB PSO Research Toolbox
 (MPSORT)~\cite{MATLABPSOResearch:2011ux} is the most customizable PSO
 implementation that could be found, and has the additional advantage of running
@@ -340,7 +336,7 @@ SPSO2011~\cite{SPSOMATLAB:zOjlExcK} has been chosen since it is a direct
 translation of the initial C script, and has been developed by the authors of
 the SPSO2011 spec.
 
-Test runs were carried out on a Mac Pro running OS X Mountain Lion, using
+Test runs were carried out on a Mac running OS X Mountain Lion, using
 64bit MATLAB version 2013a. Each experiment was repeated 25 times to minimize
 error.
 
@@ -359,7 +355,7 @@ described here.  Rastrigin has been chosen due to its popularity as a
 challenging target in optimization literature. It features a large number of
 local minima clustered around the global minimum.
 
-Plots of the functions (see figure~\ref{fig:functions}) are 2-dimensional, with
+Plots of the functions (Figure~\ref{fig:functions}) are two-dimensional, with
 the z-axis representing the function evaluation or fitness value for the given
 (x,y) positional coordinate.
 
@@ -404,7 +400,7 @@ algorithm, and so it makes sense to set them to best known values.  Secondly,
 to minimise the number of variables thus providing a more valid comparison.
 
 Particles per neighbourhood is dictated by the $K$ value in SPSO2011, which
-equates to probable average of 7 when $k = 3$. Since Canonical PSO has a fixed
+equates to a probable average of 7 when $k = 3$. Since Canonical PSO has a fixed
 number of particles per neighbourhood, this has been set to precisely 7.
 
 It is not currently known how to pick the optimal number of
@@ -435,24 +431,61 @@ number of dimensions, which is in keeping with the literature.
 
 \section{Results}
 
-The results show XXXXX.
+\subsection{Summary}
 
-\subsection{2D Functions}
+Table~\ref{tab:summary_data} reports summary results from the experiments. From
+the success rates we can see that the global minimum was found in all
+two-dimensional functions by both SPSO2011 and Canonical PSO\@. In addition, for
+all trials both SPSO2011 and Canonical PSO were able to find the global minimum
+of the sphere function in twenty dimensions. Looking at the Rosenbrock function
+in 20 dimensions, we can see that Canonical PSO was able to find the global
+minimum in 44\% of all trials. SPSO found the global minimum in twice as many
+trials, 88\% of the total. Neither algorithm was able to find the global minimum
+for the Rastrigin function in 20 dimensions.
 
-Every 2D function was successful optimizes, with no statistically significant
-difference between the performance of either algorithm.
+For all functions except Rosenbrock and Rastrigin in 20 dimensions, SPSO2011
+terminated around half an order of magnitude quicker wall-clock time than
+Canonical PSO\@. In those two cases, SPSO2011 was in fact an order of magnitude
+slower to terminate wall-clock time than Canonical PSO.
 
-\subsection{3D Functions}
+On average SPSO2011 terminated after an order of magnitude fewer function
+evaluations than Canonical PSO, meaning it was quicker to converge on the global
+minimum. Notably, SPSO-2011 was able to optimize the twenty-dimensional Sphere
+function in approximately 50 times fewer function evaluations than Canonical
+PSO\@. In the case of the twenty-dimensional Rastrigin function, both algorithms
+terminated at the maximum number of function evaluations (\num{2e6}) before they
+were able to find the global minimum.
 
-20D functions faired less well, indicating the difficult of any algorithm to
-quickly optimize functions with a high number of dimensions.
+\subsection{Fitness Scores}
 
+Table~\ref{tab:fitness_scores} shows the results of statistical analysis on the
+fitness scores for each function across all runs. The box plots
+(Figures~\ref{fig:sphere_fitness},~\ref{fig:rosenbrock_fitness}~and~\ref{fig:rastrigin_fitness})
+present these values graphically.
+
+There is no significant difference between algorithms in the global fitness
+achieved when optimizing the three 2D functions under test, and likewise for the
+twenty-dimensional Sphere function.
+
+This leaves 20D Rosenbrock and 20D Rastrigin. The box-plot for 20D Rosenbrock,
+unlike the others, uses a logarithmic scale on the x-axis in order to display
+the wide range of values. The maximum fitness value found for 20D Rosenbrock by
+SPSO-2011 is not in fact an outlier since 16\% of the trials had an end global
+fitness score of this order.  It can be said that when SPSO2011 finds the global
+minimum of 20D Rosenbrock it is accurate, but when it doesn't it is incorrect by
+a very wide margin of error. In comparison, Canonical PSO has a very broad
+distribution of global fitness values for the 20D Rosenbrock function. Although
+it was able to find the global minimum some of the time, the lower end of the
+distrubution is much looser suggesting a decreased level of average accuracy.
+The twenty-dimensional Rastrigin function shows that SPSO-2011 consistently
+optimizes closer to the global minimum than Canonical PSO, although they are
+both still a long way off the threshold for success in the majority of cases.
 
 \begin{table}
 \centering
 \begin{tabular}{lllll}
   \hline
-                                 & Avg. Func. Evals. & Avg. Time      & Succ\% \\ \hline
+                                 & Avg. Func. Evals. & Avg. Time      & \% Success \\ \hline
   Sphere 2D (Canonical PSO)      & \num{7.03e+03}    & \num{9.13e-02} & 100    \\
   Sphere 2D (SPSO-2011)          & \num{9.87e+02}    & \num{5.77e-02} & 100    \\ \hline
   Rosenbrock 2D (Canonical PSO)  & \num{1.86e+04}    & \num{2.18e-01} & 100    \\
@@ -467,7 +500,7 @@ quickly optimize functions with a high number of dimensions.
   Rastrigin 20D (SPSO-2011)      & \num{2.00e+06}    & \num{3.92e+02} & 0      \\
 \end{tabular}
 \caption{Summary}
-\label{tab:additional_data}
+\label{tab:summary_data}
 \end{table}
 
 \begin{table}
@@ -497,17 +530,58 @@ quickly optimize functions with a high number of dimensions.
 
 \section{Experimental Analysis}
 
-%Provide explanations for the observations above.
+The first thing to determine is whether or not Canonical PSO and SPSO-2011
+are good models of an original PSO variant and a contemporary PSO variant
+respectively. SPSO-2011 is the most recently available standard for
+PSO, and its authors are well respected and frequently cited researchers of PSO.
+The parameters described above that define the Canonical PSO variant are
+indicative of simple PSO implementation that features some of the early
+developments of PSO research in the algorithm's history. Therefore, it can be
+said with some degree of certainty that comparing Canonical SPO and SPSO-2011
+represents a comparison between early PSO research and recent developments.
 
-Of the three functions tested, Sphere in both dimensions was predicted to be the
-easiest and for PSO to optimize. This plays out in the results?
+The first null hypothesis is that there is no difference in convergence speed
+between an original PSO and a contemporary PSO. Table~\ref{tab:summary_data}
+clearly shows a statistically significant reduction in function evaluations
+between Canonical SPO and SPSO-2011, in some cases as much as 50 times fewer for
+SPSO-2011 when optimizing the same function. Therefore, the null hypothesis is
+rejected in favour of a hypothesis that states contemporary PSO converges on the
+global minimum in significantly fewer function evaluations than original PSO.
 
-
+The second null hypothesis states that a contemporary PSO is not able to
+converge closer to the global minimum than an original PSO\@. In this case, it is
+useful to split this into two null hypotheses for each of the dimensions under
+test. Taking the case of 2D functions, the data does not permit us to reject the
+null hypotheses. Both algorithms performed equally well at optimising 2D
+functions; there is no statistically significant difference between the two that
+would lead us to believe there is a difference in convergence accuracy. The same
+can be said of 20D Sphere function, since both are very good at optimising this
+function. In the case of 20D Rosenbrock and 20D Rastrigin, there is some
+evidence that supports rejecting the second null hypothesis in favour of a
+hypothesis that states a contemporary PSO is marginally more accurate in
+optimizing high-dimensional functions. This is not as strong a claim however,
+because of the wide range of fitness readings for Rosenbrock and the inability
+for either function to even come close to optimizing Rastrigin.
 
 \section{Conclusion}
 
-What has been learnt, analysis of the results and procedure, further research,
-references to current and future work in PSO research.
+The results of experiments were less conclusive than might be anticipated.
+Although we were able to conditionally reject the null hypotheses in some
+situations, there was not strong evidence that SPSO-2011 is significantly better
+at high-dimensionality function optimization than older and less advanced PSO
+variants. Future research on a larger number of functions with varying swarm
+sizes and dimensions would be needed to investigate if SPSO-2011 is more
+consistent and scalable, since that is not something we were able to assess in
+this paper.
+
+Some areas of PSO research have been ignored in this study. For example, the
+work that has been done in combining PSO with other nature-inspired algorithms.
+The strength of PSO lies in the highly customizable nature of the fairly simple
+algorithm.  Improvements to the fundamentals of PSO raises the bar, on top of
+which bespoke optimization solutions can be written for a wide range of industry
+applications. Therefore, it is promising that after several years of research
+were were able to relatively easily prove a real improvement in baseline
+performance.
 
 \bibliography{pso_comparison}
 
